@@ -106,20 +106,22 @@ const App = () => {
 
   const education = [
     {
-      degree: 'Bachelor of Science in Computer Science',
-      institution: 'University of Technology',
-      period: '2015 - 2019',
-      gpa: '3.8/4.0',
-      description: 'Specialized in Software Engineering and Database Systems. Active member of the Computer Science Society.',
-      logo: '🎓'
+      degree: 'Higher Secondary Certificate (HSC)',
+      institution: 'Govt. Azizul Haque College',
+      period: '2024 - 2026',
+      gpa: 'Ongoing',
+      description: 'Currently pursuing HSC in Science Group. Expected graduation in 2026.',
+      logo: '🏛️'
     },
     {
-      degree: 'Higher Secondary Certificate',
-      institution: 'Science College',
-      period: '2013 - 2015',
-      gpa: '4.5/5.0',
-      description: 'Science background with focus on Mathematics and Physics. Participated in various programming competitions.',
-      logo: '🏫'
+      degree: 'Secondary School Certificate (SSC)',
+      institution: 'Ramdeo Bazla Govt. High School (Joypurhat Zilla School)',
+      period: '2022 - 2024',
+      gpa: '5.00/5.00',
+      description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
+      logo: '🏫',
+      clubLink: 'https://www.facebook.com/scintessa',
+      clubName: 'Scintessa Science Club'
     }
   ];
 
@@ -168,12 +170,7 @@ const App = () => {
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2">
-              <img 
-                src="/Untitled-1.png" 
-                alt="FEEHAB Logo" 
-                className="h-8 w-auto"
-              />
+            <div className="flex items-center">
               <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 FEEHAB
               </span>
@@ -408,8 +405,21 @@ const App = () => {
                     </div>
                     <div className="flex items-center text-purple-400 mb-3">
                       <Star className="w-4 h-4 mr-2" />
-                      GPA: {edu.gpa}
+                      {edu.gpa === 'Ongoing' ? 'Status: Ongoing' : `GPA: ${edu.gpa}`}
                     </div>
+                    {edu.clubLink && (
+                      <div className="flex items-center text-green-400 mb-3">
+                        <Users className="w-4 h-4 mr-2" />
+                        <a 
+                          href={edu.clubLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-green-300 transition-colors duration-200"
+                        >
+                          {edu.clubName}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <p className="text-gray-300 leading-relaxed">{edu.description}</p>
