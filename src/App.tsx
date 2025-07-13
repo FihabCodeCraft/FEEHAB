@@ -583,7 +583,7 @@ const App = () => {
                 alt="FEEHAB Logo" 
                 className="h-6 w-auto"
               />
-              <span className="text-lg font-semibold">FEEHAB</span>
+              
             </div>
             <div className="text-gray-400 text-center md:text-right">
               <p>&copy; 2025 MD Yeomun Hasan. All rights reserved.</p>
