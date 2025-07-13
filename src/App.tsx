@@ -586,7 +586,7 @@ const App = () => {
               <span className="text-lg font-semibold">FEEHAB</span>
             </div>
             <div className="text-gray-400 text-center md:text-right">
-              <p>&copy; 2024 MD Yeomun Hasan. All rights reserved.</p>
+              <p>&copy; 2025 MD Yeomun Hasan. All rights reserved.</p>
               <p className="text-sm mt-1">Built with React & Tailwind CSS</p>
             </div>
           </div>
