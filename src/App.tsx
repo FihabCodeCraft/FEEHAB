@@ -508,7 +508,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Email</h3>
-                  <p className="text-gray-400">contact@feehab.com</p>
+                  <p className="text-gray-400">mdyeomunhasan@gmail.com</p>
                 </div>
               </div>
 
@@ -518,7 +518,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Phone</h3>
-                  <p className="text-gray-400">+1 (555) 123-4567</p>
+                  <p className="text-gray-400">+88 019 289-7503</p>
                 </div>
               </div>
 
