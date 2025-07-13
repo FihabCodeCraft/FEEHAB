@@ -528,7 +528,7 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Location</h3>
-                  <p className="text-gray-400">New York, NY</p>
+                  <p className="text-gray-400">Gaibandha, Rangpur, Bangladesh</p>
                 </div>
               </div>
             </div>
