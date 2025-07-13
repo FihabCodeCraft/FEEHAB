@@ -587,7 +587,7 @@ const App = () => {
             </div>
             <div className="text-gray-400 text-center md:text-right">
               <p>&copy; 2025 MD Yeomun Hasan. All rights reserved.</p>
-              <p className="text-sm mt-1">Built with React & Tailwind CSS</p>
+              <p className="text-sm mt-1">Built with React & Tailwind CSS, VALOBASHA</p>
             </div>
           </div>
         </div>
