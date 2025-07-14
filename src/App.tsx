@@ -607,7 +607,6 @@ const App = () => {
                   <option value="iran">Iran</option>
                   <option value="iraq">Iraq</option>
                   <option value="ireland">Ireland</option>
-                  <option value="israel">Israel</option>
                   <option value="italy">Italy</option>
                   <option value="japan">Japan</option>
                   <option value="jordan">Jordan</option>
