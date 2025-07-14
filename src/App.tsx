@@ -696,6 +696,7 @@ const App = () => {
                 src="/FEEHAB.png" 
                 alt="FEEHAB Logo" 
                 className="h-15 w-30"
+                href="feehab.vercel.app"
               />
               
             </div>
