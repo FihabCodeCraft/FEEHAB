@@ -402,7 +402,7 @@ const App = () => {
                     <img 
                       src={edu.logo} 
                       alt={`${edu.institution} logo`}
-                     className="w-20 h-20 object-cover rounded-full bg-white p-2 border-2 border-gray-600"
+                     className="w-32 h-32 object-cover rounded-full bg-white p-3 border-2 border-gray-600"
                     />
                   </div>
                   <div className="flex-1">
