@@ -111,7 +111,7 @@ const App = () => {
       period: '2024 - 2026',
       gpa: 'Ongoing',
       description: 'Currently pursuing HSC in Science Group. Expected graduation in 2026.',
-      logo: '🏛️'
+      logo: '/OIP (1).jpeg'
     },
     {
       degree: 'Secondary School Certificate (SSC)',
@@ -119,7 +119,7 @@ const App = () => {
       period: '2022 - 2024',
       gpa: '5.00/5.00',
       description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
-      logo: '🏫',
+      logo: '/OIP copy.jpeg',
       clubLink: 'https://www.facebook.com/scintessa',
       clubName: 'Scintessa Science Club'
     }
@@ -289,8 +289,10 @@ const App = () => {
               </p>
               <p className="text-gray-300 leading-relaxed">
                 When I'm not coding, you'll find me exploring new technologies, contributing to 
-                open-source projects, or sharing knowledge with the developer community. I believe 
-                in writing clean, maintainable code and creating products that make a real impact.
+                open-source projects, playing games to refresh my mind, or sharing knowledge with the 
+                developer community. Gaming helps me stay creative and think outside the box when 
+                solving complex problems. I believe in writing clean, maintainable code and creating 
+                products that make a real impact.
               </p>
               
               <div className="grid grid-cols-2 gap-6 mt-8">
@@ -393,8 +395,12 @@ const App = () => {
             {education.map((edu, index) => (
               <div key={index} className="glass p-8 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-start mb-4">
-                  <div className="text-4xl mr-4 bg-gradient-to-r from-blue-500 to-purple-600 p-3 rounded-full">
-                    {edu.logo}
+                  <div className="mr-4 flex-shrink-0">
+                    <img 
+                      src={edu.logo} 
+                      alt={`${edu.institution} logo`}
+                      className="w-16 h-16 object-contain rounded-lg bg-white p-2"
+                    />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-blue-400 mb-2">{edu.degree}</h3>
