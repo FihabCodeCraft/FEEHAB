@@ -695,7 +695,7 @@ const App = () => {
               <img 
                 src="/FEEHAB.png" 
                 alt="FEEHAB Logo" 
-                className="h-15 w-25"
+                className="h-15 w-30"
               />
               
             </div>
