@@ -123,7 +123,7 @@ const App = () => {
       description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
       logo: '/OIP%20copy.jpeg',
       clubLink: 'https://www.facebook.com/scintessa',
-      clubName: 'Scintessa Science Club'
+      clubName: 'Ramdeo Bazla "Scintessa" Science Club'
     }
   ];
 
