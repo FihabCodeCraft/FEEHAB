@@ -110,6 +110,7 @@ const App = () => {
       institution: 'Govt. Azizul Haque College',
       period: '2024 - 2026',
       gpa: 'Ongoing',
+      department: 'Business Studies',
       description: 'Currently pursuing HSC in Science Group. Expected graduation in 2026.',
       logo: '/OIP%20(1).jpeg'
     },
@@ -118,6 +119,7 @@ const App = () => {
       institution: 'Ramdeo Bazla Govt. High School (Joypurhat Zilla School)',
       period: '2022 - 2024',
       gpa: '5.00/5.00',
+      department: 'Science',
       description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
       logo: '/OIP%20copy.jpeg',
       clubLink: 'https://www.facebook.com/scintessa',
@@ -400,12 +402,16 @@ const App = () => {
                     <img 
                       src={edu.logo} 
                       alt={`${edu.institution} logo`}
-                     className="w-16 h-16 object-contain rounded-lg"
+                     className="w-16 h-16 object-contain rounded-lg bg-white p-1"
                     />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-blue-400 mb-2">{edu.degree}</h3>
                     <h4 className="text-lg text-gray-300 mb-2">{edu.institution}</h4>
+                    <div className="flex items-center text-yellow-400 mb-2">
+                      <GraduationCap className="w-4 h-4 mr-2" />
+                      Department: {edu.department}
+                    </div>
                     <div className="flex items-center text-gray-400 mb-2">
                       <Calendar className="w-4 h-4 mr-2" />
                       {edu.period}
@@ -421,9 +427,10 @@ const App = () => {
                           href={edu.clubLink} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="hover:text-green-300 transition-colors duration-200"
+                          className="hover:text-green-300 transition-colors duration-200 flex items-center"
                         >
                           {edu.clubName}
+                          <ExternalLink className="w-3 h-3 ml-1" />
                         </a>
                       </div>
                     )}
