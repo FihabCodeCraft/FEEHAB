@@ -515,7 +515,12 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Email</h3>
-                  <p className="text-gray-400">mdyeomunhasan@gmail.com</p>
+                  <a 
+                    href="mailto:mdyeomunhasan@gmail.com" 
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    mdyeomunhasan@gmail.com
+                  </a>
                 </div>
               </div>
 
@@ -525,7 +530,12 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Phone</h3>
-                  <p className="text-gray-400">+88 019 289-7503</p>
+                  <a 
+                    href="tel:+8801928975003" 
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    +88 019 289-7503
+                  </a>
                 </div>
               </div>
 
@@ -535,7 +545,14 @@ const App = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Location</h3>
-                  <p className="text-gray-400">Gaibandha, Rangpur, Bangladesh</p>
+                  <a 
+                    href="https://www.google.com/maps/search/Gaibandha,+Rangpur,+Bangladesh" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    Gaibandha, Rangpur, Bangladesh
+                  </a>
                 </div>
               </div>
             </div>
