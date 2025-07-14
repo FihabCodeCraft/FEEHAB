@@ -111,7 +111,7 @@ const App = () => {
       period: '2024 - 2026',
       gpa: 'Ongoing',
       description: 'Currently pursuing HSC in Science Group. Expected graduation in 2026.',
-      logo: '/OIP (1).jpeg'
+      logo: '/OIP%20(1).jpeg'
     },
     {
       degree: 'Secondary School Certificate (SSC)',
@@ -119,7 +119,7 @@ const App = () => {
       period: '2022 - 2024',
       gpa: '5.00/5.00',
       description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
-      logo: '/OIP copy.jpeg',
+      logo: '/OIP%20copy.jpeg',
       clubLink: 'https://www.facebook.com/scintessa',
       clubName: 'Scintessa Science Club'
     }
@@ -289,9 +289,10 @@ const App = () => {
               </p>
               <p className="text-gray-300 leading-relaxed">
                 When I'm not coding, you'll find me exploring new technologies, contributing to 
-                open-source projects, playing games to refresh my mind, or sharing knowledge with the 
-                developer community. Gaming helps me stay creative and think outside the box when 
-                solving complex problems. I believe in writing clean, maintainable code and creating 
+                open-source projects, or sharing knowledge with the developer community. I'm also 
+                an avid gamer - playing games helps me refresh my mind and stay creative when 
+                solving complex problems. Gaming teaches me strategic thinking and helps me approach 
+                coding challenges from different angles. I believe in writing clean, maintainable code and creating 
                 products that make a real impact.
               </p>
               
@@ -399,7 +400,7 @@ const App = () => {
                     <img 
                       src={edu.logo} 
                       alt={`${edu.institution} logo`}
-                      className="w-16 h-16 object-contain rounded-lg bg-white p-2"
+                     className="w-16 h-16 object-contain rounded-lg"
                     />
                   </div>
                   <div className="flex-1">
