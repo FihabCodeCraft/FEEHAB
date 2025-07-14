@@ -694,7 +694,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <img 
-                src="/Untitled-1.png" 
+                src="/FEEHAB.png" 
                 alt="FEEHAB Logo" 
                 className="h-6 w-auto"
               />
