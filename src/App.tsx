@@ -573,11 +573,34 @@ const App = () => {
                 />
               </div>
               <div>
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200"
-                />
+                <select
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
+                  defaultValue=""
+                >
+                  <option value="" disabled className="text-gray-400">Select Subject</option>
+                  <option value="project-inquiry">Project Inquiry</option>
+                  <option value="job-opportunity">Job Opportunity</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="freelance-work">Freelance Work</option>
+                  <option value="consultation">Consultation</option>
+                  <option value="general-inquiry">General Inquiry</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Attachment (Optional)
+                </label>
+                <div className="relative">
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 file:cursor-pointer"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG (Max 10MB)
+                  </p>
+                </div>
               </div>
               <div>
                 <textarea
