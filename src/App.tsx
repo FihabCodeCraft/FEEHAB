@@ -696,7 +696,7 @@ const App = () => {
               <img 
                 src="/FEEHAB.png" 
                 alt="FEEHAB Logo" 
-                className="h-6 w-auto"
+                className="h-6 w-6"
               />
               
             </div>
