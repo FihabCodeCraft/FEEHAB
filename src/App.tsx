@@ -695,7 +695,8 @@ const App = () => {
               <img 
                 src="/FEEHAB.png" 
                 alt="FEEHAB Logo" 
-                className="h-15 w-30"
+                className="h-15 w-auto
+            "
                 href="feehab.vercel.app"
               />
               
