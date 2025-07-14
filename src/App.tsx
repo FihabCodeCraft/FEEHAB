@@ -402,13 +402,13 @@ const App = () => {
                     <img 
                       src={edu.logo} 
                       alt={`${edu.institution} logo`}
-                     className="w-16 h-16 object-contain rounded-lg bg-white p-1"
+                     className="w-20 h-20 object-cover rounded-full bg-white p-2 border-2 border-gray-600"
                     />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-blue-400 mb-2">{edu.degree}</h3>
                     <h4 className="text-lg text-gray-300 mb-2">{edu.institution}</h4>
-                    <div className="flex items-center text-yellow-400 mb-2">
+                    <div className="flex items-center text-white font-bold mb-2">
                       <GraduationCap className="w-4 h-4 mr-2" />
                       Department: {edu.department}
                     </div>
