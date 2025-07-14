@@ -577,6 +577,67 @@ const App = () => {
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
                   defaultValue=""
                 >
+                  <option value="" disabled className="text-gray-400">Select Your Country</option>
+                  <option value="afghanistan">Afghanistan</option>
+                  <option value="albania">Albania</option>
+                  <option value="algeria">Algeria</option>
+                  <option value="argentina">Argentina</option>
+                  <option value="australia">Australia</option>
+                  <option value="austria">Austria</option>
+                  <option value="bangladesh">Bangladesh</option>
+                  <option value="belgium">Belgium</option>
+                  <option value="brazil">Brazil</option>
+                  <option value="canada">Canada</option>
+                  <option value="china">China</option>
+                  <option value="denmark">Denmark</option>
+                  <option value="egypt">Egypt</option>
+                  <option value="finland">Finland</option>
+                  <option value="france">France</option>
+                  <option value="germany">Germany</option>
+                  <option value="greece">Greece</option>
+                  <option value="india">India</option>
+                  <option value="indonesia">Indonesia</option>
+                  <option value="iran">Iran</option>
+                  <option value="iraq">Iraq</option>
+                  <option value="ireland">Ireland</option>
+                  <option value="israel">Israel</option>
+                  <option value="italy">Italy</option>
+                  <option value="japan">Japan</option>
+                  <option value="jordan">Jordan</option>
+                  <option value="kenya">Kenya</option>
+                  <option value="malaysia">Malaysia</option>
+                  <option value="mexico">Mexico</option>
+                  <option value="netherlands">Netherlands</option>
+                  <option value="new-zealand">New Zealand</option>
+                  <option value="nigeria">Nigeria</option>
+                  <option value="norway">Norway</option>
+                  <option value="pakistan">Pakistan</option>
+                  <option value="philippines">Philippines</option>
+                  <option value="poland">Poland</option>
+                  <option value="portugal">Portugal</option>
+                  <option value="russia">Russia</option>
+                  <option value="saudi-arabia">Saudi Arabia</option>
+                  <option value="singapore">Singapore</option>
+                  <option value="south-africa">South Africa</option>
+                  <option value="south-korea">South Korea</option>
+                  <option value="spain">Spain</option>
+                  <option value="sri-lanka">Sri Lanka</option>
+                  <option value="sweden">Sweden</option>
+                  <option value="switzerland">Switzerland</option>
+                  <option value="thailand">Thailand</option>
+                  <option value="turkey">Turkey</option>
+                  <option value="uae">United Arab Emirates</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="usa">United States</option>
+                  <option value="vietnam">Vietnam</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <select
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
+                  defaultValue=""
+                >
                   <option value="" disabled className="text-gray-400">Select Subject</option>
                   <option value="project-inquiry">Project Inquiry</option>
                   <option value="job-opportunity">Job Opportunity</option>
