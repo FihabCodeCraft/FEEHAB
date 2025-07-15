@@ -29,6 +29,7 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +64,7 @@ const App = () => {
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const form = e.currentTarget;
     const formData = new FormData(form);
 
@@ -77,9 +79,14 @@ const App = () => {
         form.reset();
         // Reset success message after 5 seconds
         setTimeout(() => setFormSubmitted(false), 5000);
+      } else {
+        throw new Error('Form submission failed');
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      // You could add error state handling here if needed
+    } finally {
+      setIsSubmitting(false);
     }
   };
   const skills = [
@@ -721,9 +728,17 @@ const App = () => {
               </div>
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
               >
-                Send Message
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
               </button>
               </form>
             )}
