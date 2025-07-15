@@ -509,8 +509,7 @@ const App = () => {
             <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-              I'm always interested in new opportunities and exciting projects. 
-              Let's discuss how we can work together!
+              Send me a message and I will reply you under 6 hours. I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!
             </p>
           </div>
 
@@ -564,25 +563,36 @@ const App = () => {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form 
+              action="https://getform.io/f/adrgmrwa" 
+              method="POST" 
+              encType="multipart/form-data"
+              className="space-y-6"
+            >
               <div>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
+                  required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 />
               </div>
               <div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Your Email"
+                  required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 />
               </div>
               <div>
                 <select
+                  name="country"
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
                   defaultValue=""
+                  required
                 >
                   <option value="" disabled className="text-gray-400">Select Your Country</option>
                   <option value="afghanistan">Afghanistan</option>
@@ -641,8 +651,10 @@ const App = () => {
               </div>
               <div>
                 <select
+                  name="subject"
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
                   defaultValue=""
+                  required
                 >
                   <option value="" disabled className="text-gray-400">Select Subject</option>
                   <option value="project-inquiry">Project Inquiry</option>
@@ -661,6 +673,7 @@ const App = () => {
                 <div className="relative">
                   <input
                     type="file"
+                    name="attachment"
                     accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 file:cursor-pointer"
                   />
@@ -672,7 +685,9 @@ const App = () => {
               <div>
                 <textarea
                   rows={5}
+                  name="message"
                   placeholder="Your Message"
+                  required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none"
                 ></textarea>
               </div>
