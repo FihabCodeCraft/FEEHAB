@@ -754,7 +754,7 @@ const App = () => {
               <img 
                 src="/FEEHAB copy.png" 
                 alt="FEEHAB Logo" 
-                className="h-12 w-auto"
+                className="h-20 w-auto"
               />
             </div>
             <div className="text-gray-400 text-center md:text-right">
