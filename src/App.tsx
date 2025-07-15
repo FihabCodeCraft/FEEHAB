@@ -21,12 +21,14 @@ import {
   Star,
   Calendar,
   Users,
-  Zap
+  Zap,
+  CheckCircle
 } from 'lucide-react';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +61,27 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://getform.io/f/adrgmrwa', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+        form.reset();
+        // Reset success message after 5 seconds
+        setTimeout(() => setFormSubmitted(false), 5000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+    }
+  };
   const skills = [
     { name: 'React', level: 95, icon: <Code className="w-6 h-6" /> },
     { name: 'Node.js', level: 90, icon: <Server className="w-6 h-6" /> },
@@ -563,12 +586,17 @@ const App = () => {
               </div>
             </div>
 
-            <form 
-              action="https://getform.io/f/adrgmrwa" 
-              method="POST" 
-              encType="multipart/form-data"
-              className="space-y-6"
-            >
+            {formSubmitted ? (
+              <div className="glass p-8 rounded-xl text-center">
+                <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-semibold text-green-400 mb-2">Message Sent Successfully!</h3>
+                <p className="text-gray-300">I will reply you so soon. Thank you for reaching out!</p>
+              </div>
+            ) : (
+              <form 
+                onSubmit={handleFormSubmit}
+                className="space-y-6"
+              >
               <div>
                 <input
                   type="text"
@@ -697,7 +725,8 @@ const App = () => {
               >
                 Send Message
               </button>
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </section>
@@ -708,16 +737,14 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <img 
-                src="/FEEHAB.png" 
+                src="/FEEHAB copy.png" 
                 alt="FEEHAB Logo" 
                 className="h-8 w-auto"
-                href="feehab.vercel.app"
               />
-              
             </div>
             <div className="text-gray-400 text-center md:text-right">
               <p>&copy; 2025 MD Yeomun Hasan. All rights reserved.</p>
-              <p className="text-sm mt-1">Built with React & Tailwind CSS, VALOBASHA</p>
+              <p className="text-sm mt-1">Built with React & Tailwind CSS</p>
             </div>
           </div>
         </div>
