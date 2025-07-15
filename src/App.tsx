@@ -258,16 +258,21 @@ const App = () => {
           <div className="animate-float">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-                <a 
-                  href="https://feehab.vercel.app" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity duration-200"
-                >
-                  MD Yeomun Hasan
-                </a>
+                MD Yeomun Hasan
               </span>
             </h1>
+            <div className="mb-8">
+              <a 
+                href="https://feehab.vercel.app" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+              >
+                <span className="text-lg text-blue-400 hover:text-blue-300 underline">
+                  Visit My Portfolio →
+                </span>
+              </a>
+            </div>
             <h2 className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
               Full Stack Developer & Creative Technologist
             </h2>
