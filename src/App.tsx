@@ -30,6 +30,7 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hoveredGame, setHoveredGame] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +61,49 @@ const App = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
+  };
+
+  const gameProfiles = {
+    valorant: {
+      name: 'Valorant',
+      uid: 'FEEHAB#7503',
+      rank: 'Diamond 2',
+      level: 156,
+      mainAgent: 'Jett',
+      kd: '1.8',
+      winRate: '68%',
+      logo: 'https://logos-world.net/wp-content/uploads/2021/02/Valorant-Logo.png'
+    },
+    cs2: {
+      name: 'Counter-Strike 2',
+      uid: 'FEEHAB_YH',
+      rank: 'Legendary Eagle',
+      level: 89,
+      mainWeapon: 'AK-47',
+      kd: '1.6',
+      winRate: '72%',
+      logo: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/730/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg'
+    },
+    freefire: {
+      name: 'Free Fire',
+      uid: '2847593621',
+      rank: 'Grandmaster',
+      level: 78,
+      mainCharacter: 'Chrono',
+      kd: '2.1',
+      winRate: '75%',
+      logo: 'https://logoeps.com/wp-content/uploads/2021/03/free-fire-vector-logo.png'
+    },
+    roblox: {
+      name: 'Roblox',
+      uid: '@FEEHAB_YH',
+      level: 'Creator',
+      joinDate: '2019',
+      favoriteGame: 'Arsenal',
+      creations: '12 Games',
+      followers: '2.3K',
+      logo: 'https://logos-world.net/wp-content/uploads/2021/03/Roblox-Logo.png'
+    }
   };
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -364,64 +408,238 @@ const App = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Valorant */}
+            <div 
+              className="relative glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onMouseEnter={() => setHoveredGame('valorant')}
+              onMouseLeave={() => setHoveredGame(null)}
+              onClick={() => setHoveredGame(hoveredGame === 'valorant' ? null : 'valorant')}
+            >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-8 h-8" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden bg-white p-2">
+                  <img 
+                    src={gameProfiles.valorant.logo} 
+                    alt="Valorant" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-red-400">Valorant</h3>
-                <p className="text-gray-300 text-sm">Tactical FPS that enhances strategic thinking and team coordination</p>
+                <h3 className="text-lg font-semibold mb-2 text-red-400">Valorant</h3>
+                <p className="text-gray-300 text-sm">Tactical FPS</p>
               </div>
+              
+              {hoveredGame === 'valorant' && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-xl z-10">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">UID:</span>
+                      <span className="text-white font-mono">{gameProfiles.valorant.uid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Rank:</span>
+                      <span className="text-red-400 font-semibold">{gameProfiles.valorant.rank}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Level:</span>
+                      <span className="text-white">{gameProfiles.valorant.level}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Main Agent:</span>
+                      <span className="text-blue-400">{gameProfiles.valorant.mainAgent}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">K/D:</span>
+                      <span className="text-green-400">{gameProfiles.valorant.kd}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Win Rate:</span>
+                      <span className="text-purple-400">{gameProfiles.valorant.winRate}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+            {/* Counter-Strike 2 */}
+            <div 
+              className="relative glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onMouseEnter={() => setHoveredGame('cs2')}
+              onMouseLeave={() => setHoveredGame(null)}
+              onClick={() => setHoveredGame(hoveredGame === 'cs2' ? null : 'cs2')}
+            >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-8 h-8" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden bg-white p-1">
+                  <img 
+                    src={gameProfiles.cs2.logo} 
+                    alt="Counter-Strike 2" 
+                    className="w-full h-full object-cover rounded"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-blue-400">Counter-Strike 2</h3>
-                <p className="text-gray-300 text-sm">Classic competitive shooter that sharpens reflexes and tactical awareness</p>
+                <h3 className="text-lg font-semibold mb-2 text-blue-400">Counter-Strike 2</h3>
+                <p className="text-gray-300 text-sm">Competitive FPS</p>
               </div>
+              
+              {hoveredGame === 'cs2' && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-xl z-10">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Steam ID:</span>
+                      <span className="text-white font-mono">{gameProfiles.cs2.uid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Rank:</span>
+                      <span className="text-yellow-400 font-semibold">{gameProfiles.cs2.rank}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Level:</span>
+                      <span className="text-white">{gameProfiles.cs2.level}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Main Weapon:</span>
+                      <span className="text-red-400">{gameProfiles.cs2.mainWeapon}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">K/D:</span>
+                      <span className="text-green-400">{gameProfiles.cs2.kd}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Win Rate:</span>
+                      <span className="text-purple-400">{gameProfiles.cs2.winRate}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+            {/* Free Fire */}
+            <div 
+              className="relative glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onMouseEnter={() => setHoveredGame('freefire')}
+              onMouseLeave={() => setHoveredGame(null)}
+              onClick={() => setHoveredGame(hoveredGame === 'freefire' ? null : 'freefire')}
+            >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Smartphone className="w-8 h-8" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden bg-white p-2">
+                  <img 
+                    src={gameProfiles.freefire.logo} 
+                    alt="Free Fire" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-green-400">Free Fire</h3>
-                <p className="text-gray-300 text-sm">Mobile battle royale that improves quick decision-making under pressure</p>
+                <h3 className="text-lg font-semibold mb-2 text-orange-400">Free Fire</h3>
+                <p className="text-gray-300 text-sm">Battle Royale</p>
               </div>
+              
+              {hoveredGame === 'freefire' && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-xl z-10">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Player ID:</span>
+                      <span className="text-white font-mono">{gameProfiles.freefire.uid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Rank:</span>
+                      <span className="text-orange-400 font-semibold">{gameProfiles.freefire.rank}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Level:</span>
+                      <span className="text-white">{gameProfiles.freefire.level}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Main Character:</span>
+                      <span className="text-blue-400">{gameProfiles.freefire.mainCharacter}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">K/D:</span>
+                      <span className="text-green-400">{gameProfiles.freefire.kd}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Win Rate:</span>
+                      <span className="text-purple-400">{gameProfiles.freefire.winRate}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+            {/* Roblox */}
+            <div 
+              className="relative glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onMouseEnter={() => setHoveredGame('roblox')}
+              onMouseLeave={() => setHoveredGame(null)}
+              onClick={() => setHoveredGame(hoveredGame === 'roblox' ? null : 'roblox')}
+            >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="w-8 h-8" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden bg-white p-2">
+                  <img 
+                    src={gameProfiles.roblox.logo} 
+                    alt="Roblox" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-purple-400">Open World Games</h3>
-                <p className="text-gray-300 text-sm">Exploration and adventure games that fuel creativity and problem-solving</p>
+                <h3 className="text-lg font-semibold mb-2 text-green-400">Roblox</h3>
+                <p className="text-gray-300 text-sm">Creative Platform</p>
               </div>
-            </div>
-
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8" />
+              
+              {hoveredGame === 'roblox' && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-xl z-10">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Username:</span>
+                      <span className="text-white font-mono">{gameProfiles.roblox.uid}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Status:</span>
+                      <span className="text-green-400 font-semibold">{gameProfiles.roblox.level}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Joined:</span>
+                      <span className="text-white">{gameProfiles.roblox.joinDate}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Favorite Game:</span>
+                      <span className="text-blue-400">{gameProfiles.roblox.favoriteGame}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Creations:</span>
+                      <span className="text-purple-400">{gameProfiles.roblox.creations}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Followers:</span>
+                      <span className="text-yellow-400">{gameProfiles.roblox.followers}</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-yellow-400">Roblox</h3>
-                <p className="text-gray-300 text-sm">Creative platform that inspires game development and community building</p>
+              )}
+            </div>
+          </div>
+
+          {/* Open World Games Section */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-center mb-6 text-purple-400">Other Gaming Interests</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                    <Globe className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-purple-400">Open World Games</h4>
+                    <p className="text-gray-300 text-sm">GTA V, Minecraft, Assassin's Creed series</p>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8" />
+              
+              <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <Star className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-indigo-400">Competitive Gaming</h4>
+                    <p className="text-gray-300 text-sm">Tournaments, ranked matches, esports</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-indigo-400">Competitive Gaming</h3>
-                <p className="text-gray-300 text-sm">Participating in tournaments and ranked matches to improve skills</p>
               </div>
             </div>
           </div>
@@ -550,8 +768,9 @@ const App = () => {
               <div className="glass p-6 rounded-xl">
                 <h3 className="text-xl font-semibold text-blue-400 mb-2">Future Plans</h3>
                 <p className="text-gray-300">
-                  Planning to pursue Computer Science & Engineering after completing HSC. 
-                  Excited to deepen my knowledge in software development and emerging technologies.
+                  Planning to pursue studies at IBA (Institute of Business Administration) after completing HSC. 
+                  My goal is to achieve expertise in three key areas: computer knowledge, business knowledge, and gaming. 
+                  This combination will help me build innovative tech businesses and contribute to the gaming industry.
                 </p>
               </div>
             </div>
