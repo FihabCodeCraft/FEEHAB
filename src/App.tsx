@@ -306,7 +306,7 @@ const App = () => {
               </span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
-              Full Stack Developer & Gamer
+              Full Stack Developer & Creative Technologist
             </h2>
             <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
               Crafting exceptional digital experiences with modern technologies. 
@@ -374,7 +374,7 @@ const App = () => {
               
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div className="text-center p-4 glass rounded-lg">
-                  <div className="text-3xl font-bold text-blue-400">50+</div>
+                  <div className="text-3xl font-bold text-blue-400">10+</div>
                   <div className="text-gray-400">Projects Completed</div>
                 </div>
                 <div className="text-center p-4 glass rounded-lg">
@@ -416,11 +416,11 @@ const App = () => {
               onMouseLeave={() => setHoveredGame(null)}
             >
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-gray-900 p-3 border-2 border-gray-700">
+                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
                   <img 
                     src={gameProfiles.valorant.logo} 
                     alt="Valorant" 
-                    className="w-full h-full object-contain filter brightness-110"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 
@@ -448,11 +448,11 @@ const App = () => {
               onMouseLeave={() => setHoveredGame(null)}
             >
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-gray-900 p-2 border-2 border-gray-700">
+                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
                   <img 
                     src={gameProfiles.cs2.logo} 
                     alt="Counter-Strike 2" 
-                    className="w-full h-full object-cover rounded-lg filter brightness-110"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 
@@ -480,11 +480,11 @@ const App = () => {
               onMouseLeave={() => setHoveredGame(null)}
             >
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-gray-900 p-3 border-2 border-gray-700">
+                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
                   <img 
                     src={gameProfiles.freefire.logo} 
                     alt="Free Fire" 
-                    className="w-full h-full object-contain filter brightness-110"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 
@@ -512,11 +512,11 @@ const App = () => {
               onMouseLeave={() => setHoveredGame(null)}
             >
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-gray-900 p-3 border-2 border-gray-700">
+                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
                   <img 
                     src={gameProfiles.roblox.logo} 
                     alt="Roblox" 
-                    className="w-full h-full object-contain filter brightness-110"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 
@@ -540,8 +540,8 @@ const App = () => {
 
           {/* Open World Games Section */}
           <div className="mt-12">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-purple-400">Other Gaming Interests</h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <h3 className="text-2xl font-semibold text-center mb-6 text-purple-400">Open World Games</h3>
+            <div className="flex justify-center">
               <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
@@ -550,18 +550,6 @@ const App = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-purple-400">Open World Games</h4>
                     <p className="text-gray-300 text-sm">GTA V, Minecraft, Assassin's Creed series</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center">
-                    <Star className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-indigo-400">Competitive Gaming</h4>
-                    <p className="text-gray-300 text-sm">Tournaments, ranked matches, esports</p>
                   </div>
                 </div>
               </div>
