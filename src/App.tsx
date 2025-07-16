@@ -72,7 +72,7 @@ const App = () => {
       mainAgent: 'Jett',
       kd: '1.8',
       winRate: '68%',
-      logo: 'https://logos-world.net/wp-content/uploads/2021/02/Valorant-Logo.png'
+      logo: '/files_5259412-1752659467494-valorant-logo-transparent-free-png.webp'
     },
     cs2: {
       name: 'Counter-Strike 2',
@@ -82,7 +82,7 @@ const App = () => {
       mainWeapon: 'AK-47',
       kd: '1.6',
       winRate: '72%',
-      logo: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/730/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg'
+      logo: '/files_5259412-1752659540062-download.webp'
     },
     freefire: {
       name: 'Free Fire',
@@ -92,7 +92,7 @@ const App = () => {
       mainCharacter: 'Chrono',
       kd: '2.1',
       winRate: '75%',
-      logo: 'https://logoeps.com/wp-content/uploads/2021/03/free-fire-vector-logo.png'
+      logo: '/files_5259412-1752659513690-th.jpg'
     },
     roblox: {
       name: 'Roblox',
@@ -102,7 +102,7 @@ const App = () => {
       favoriteGames: 'Dead Rails, Buckshot Mayhem',
       playtime: '500+ Hours',
       achievements: '150+ Badges',
-      logo: 'https://logos-world.net/wp-content/uploads/2021/03/Roblox-Logo.png'
+      logo: '/files_5259412-1752659563015-download.webp'
     }
   };
 
@@ -191,7 +191,7 @@ const App = () => {
     {
       degree: 'Secondary School Certificate (SSC)',
       institution: 'Ramdeo Bazla Govt. High School (Joypurhat Zilla School)',
-      period: '2022 - 2024',
+      period: 'Completed 2024',
       gpa: '5.00/5.00',
       department: 'Science',
       description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
