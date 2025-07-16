@@ -33,7 +33,7 @@ const App = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'education', 'projects', 'contact'];
+      const sections = ['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -210,7 +210,7 @@ const App = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
+              {['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -235,7 +235,7 @@ const App = () => {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-800">
-              {['home', 'about', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
+              {['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -261,24 +261,12 @@ const App = () => {
                 MD Yeomun Hasan
               </span>
             </h1>
-            <div className="mb-8">
-              <a 
-                href="https://feehab.vercel.app" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block hover:opacity-80 transition-opacity duration-200 cursor-pointer"
-              >
-                <span className="text-lg text-blue-400 hover:text-blue-300 underline">
-                  Visit My Portfolio →
-                </span>
-              </a>
-            </div>
             <h2 className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
-              Full Stack Developer & Creative Technologist
+              Full Stack Developer & Gamer
             </h2>
             <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
               Crafting exceptional digital experiences with modern technologies. 
-              Passionate about creating scalable solutions that make a difference.
+              Passionate about creating scalable solutions and competitive gaming.
             </p>
           </div>
           
@@ -334,9 +322,9 @@ const App = () => {
               <p className="text-gray-300 leading-relaxed">
                 When I'm not coding, you'll find me exploring new technologies, contributing to 
                 open-source projects, or sharing knowledge with the developer community. I'm also 
-                an avid gamer - playing games helps me refresh my mind and stay creative when 
-                solving complex problems. Gaming teaches me strategic thinking and helps me approach 
-                coding challenges from different angles. I believe in writing clean, maintainable code and creating 
+                a passionate gamer who enjoys competitive FPS games and open-world adventures. 
+                Gaming enhances my strategic thinking and problem-solving skills, which I apply 
+                to coding challenges. I believe in writing clean, maintainable code and creating 
                 products that make a real impact.
               </p>
               
@@ -364,8 +352,84 @@ const App = () => {
         </div>
       </section>
 
+      {/* Gaming Section */}
+      <section id="gaming" className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Gaming & Interests</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+              Gaming is more than just entertainment for me - it's a way to enhance strategic thinking, 
+              teamwork, and quick decision-making skills that I apply in development.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-red-400">Valorant</h3>
+                <p className="text-gray-300 text-sm">Tactical FPS that enhances strategic thinking and team coordination</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-blue-400">Counter-Strike 2</h3>
+                <p className="text-gray-300 text-sm">Classic competitive shooter that sharpens reflexes and tactical awareness</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smartphone className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-green-400">Free Fire</h3>
+                <p className="text-gray-300 text-sm">Mobile battle royale that improves quick decision-making under pressure</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-purple-400">Open World Games</h3>
+                <p className="text-gray-300 text-sm">Exploration and adventure games that fuel creativity and problem-solving</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-yellow-400">Roblox</h3>
+                <p className="text-gray-300 text-sm">Creative platform that inspires game development and community building</p>
+              </div>
+            </div>
+
+            <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-indigo-400">Competitive Gaming</h3>
+                <p className="text-gray-300 text-sm">Participating in tournaments and ranked matches to improve skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
-      <section id="skills" className="py-20">
+      <section id="skills" className="py-20 bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Skills & Expertise</h2>
@@ -393,7 +457,7 @@ const App = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-gray-800/50">
+      <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
@@ -429,64 +493,74 @@ const App = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20">
+      <section id="education" className="py-20 bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Education</h2>
+            <h2 className="text-4xl font-bold mb-4">Education Journey</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+              Currently building my academic foundation while pursuing my passion for technology and development.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto space-y-8">
             {education.map((edu, index) => (
-              <div key={index} className="glass p-8 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                <div className="flex items-start mb-4">
-                  <div className="mr-4 flex-shrink-0">
+              <div key={index} className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-center mb-4">
+                  <div className="mr-6 flex-shrink-0">
                     <img 
                       src={edu.logo} 
                       alt={`${edu.institution} logo`}
-                     className="w-32 h-32 object-cover rounded-full bg-white p-3 border-2 border-gray-600"
+                     className="w-16 h-16 object-cover rounded-full bg-white p-2 border-2 border-gray-600"
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-blue-400 mb-2">{edu.degree}</h3>
-                    <h4 className="text-lg text-gray-300 mb-2">{edu.institution}</h4>
-                    <div className="flex items-center text-white font-bold mb-2">
-                      <GraduationCap className="w-4 h-4 mr-2" />
-                      Department: {edu.department}
-                    </div>
-                    <div className="flex items-center text-gray-400 mb-2">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      {edu.period}
-                    </div>
-                    <div className="flex items-center text-purple-400 mb-3">
-                      <Star className="w-4 h-4 mr-2" />
-                      {edu.gpa === 'Ongoing' ? 'Status: Ongoing' : `GPA: ${edu.gpa}`}
-                    </div>
-                    {edu.clubLink && (
-                      <div className="flex items-center text-green-400 mb-3">
-                        <Users className="w-4 h-4 mr-2" />
-                        <a 
-                          href={edu.clubLink} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-green-300 transition-colors duration-200 flex items-center"
-                        >
-                          {edu.clubName}
-                          <ExternalLink className="w-3 h-3 ml-1" />
-                        </a>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h3 className="text-lg font-semibold text-blue-400">{edu.degree}</h3>
+                        <h4 className="text-gray-300">{edu.institution}</h4>
                       </div>
-                    )}
+                      <div className="text-right mt-2 md:mt-0">
+                        <div className="text-gray-400 text-sm">{edu.period}</div>
+                        <div className="text-purple-400 font-semibold">
+                          {edu.gpa === 'Ongoing' ? 'In Progress' : `GPA: ${edu.gpa}`}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-300 leading-relaxed">{edu.description}</p>
+                {edu.clubLink && (
+                  <div className="mt-3 flex items-center text-green-400 text-sm">
+                    <Users className="w-4 h-4 mr-2" />
+                    <a 
+                      href={edu.clubLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-green-300 transition-colors duration-200 flex items-center"
+                    >
+                      {edu.clubName}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
+            
+            <div className="text-center mt-12">
+              <div className="glass p-6 rounded-xl">
+                <h3 className="text-xl font-semibold text-blue-400 mb-2">Future Plans</h3>
+                <p className="text-gray-300">
+                  Planning to pursue Computer Science & Engineering after completing HSC. 
+                  Excited to deepen my knowledge in software development and emerging technologies.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gray-800/50">
+      <section id="projects" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
@@ -545,7 +619,7 @@ const App = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
+      <section id="contact" className="py-20 bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
