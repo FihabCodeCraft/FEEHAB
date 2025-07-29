@@ -181,11 +181,11 @@ const App = () => {
   const education = [
     {
       degree: 'Higher Secondary Certificate (HSC)',
-      institution: 'Govt. Azizul Haque College',
+      institution: 'Govt. Azizul Haque College, Bogura',
       period: '2024 - 2026',
       gpa: 'Ongoing',
       department: 'Business Studies',
-      description: 'Currently pursuing HSC in Science Group. Expected graduation in 2026.',
+      description: 'Currently pursuing HSC in Business Studies Group. Expected graduation in 2026.',
       logo: '/OIP%20(1).jpeg'
     },
     {
