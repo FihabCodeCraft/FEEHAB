@@ -66,7 +66,7 @@ const App = () => {
   const gameProfiles = {
     valorant: {
       name: 'Valorant',
-      uid: 'FEEHAB#7503',
+      uid: 'whiff FEEHAB#RUSHR',
       rank: 'Diamond 2',
       level: 156,
       mainAgent: 'Jett',
@@ -86,10 +86,10 @@ const App = () => {
     },
     freefire: {
       name: 'Free Fire',
-      uid: '2847593621',
-      rank: 'Grandmaster',
-      level: 78,
-      mainCharacter: 'Chrono',
+      uid: '1521343189',
+      rank: 'Heroic 3STAR',
+      level: 67,
+      mainCharacter: 'ALOK',
       kd: '2.1',
       winRate: '75%',
       logo: '/files_5259412-1752659513690-th.jpg'
