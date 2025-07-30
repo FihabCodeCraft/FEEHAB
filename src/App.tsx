@@ -72,7 +72,7 @@ const App = () => {
       mainAgent: 'Jett',
       kd: '1.8',
       winRate: '68%',
-      logo: '/files_5259412-1752659467494-valorant-logo-transparent-free-png.webp'
+      logo: 'public/download.png'
     },
     cs2: {
       name: 'Counter-Strike 2',
