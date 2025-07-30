@@ -72,7 +72,7 @@ const App = () => {
       mainAgent: 'Jett',
       kd: '1.8',
       winRate: '68%',
-      logo: 'public/download.png'
+      logo: 'public/download copy.webp'
     },
     cs2: {
       name: 'Counter-Strike 2',
