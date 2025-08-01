@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Hub - FEEHAB | MD Yeomun Hasan</title>
+    <meta name="description" content="Personal work hub of MD Yeomun Hasan (FEEHAB) - Ideas, projects, links, and personal workspace.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="bg-gray-800/50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="/FEEHAB copy copy.png" alt="FEEHAB Logo" class="h-12 w-auto">
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                            Work Hub
+                        </h1>
+                        <p class="text-gray-400 text-sm">Personal Workspace & Ideas</p>
+                    </div>
+                </div>
+                <a 
+                    href="/" 
+                    class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+                >
+                    Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Welcome Section -->
+        <section class="text-center mb-16">
+            <div class="animate-float">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        Welcome to My Work Hub
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    This is my personal workspace where I organize ideas, projects, and resources
+                </p>
+            </div>
+        </section>
+
+        <!-- Grid Layout -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Ideas -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-yellow-400">Project Ideas</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• AI-powered gaming companion app</li>
+                    <li>• E-commerce platform for gamers</li>
+                    <li>• Real-time collaboration tool</li>
+                    <li>• Mobile game development</li>
+                    <li>• Blockchain-based portfolio tracker</li>
+                </ul>
+            </div>
+
+            <!-- Current Projects -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-400">Current Projects</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Portfolio Website (In Progress)</li>
+                    <li>• Gaming Stats Tracker</li>
+                    <li>• Personal Blog Platform</li>
+                    <li>• Task Management App</li>
+                </ul>
+            </div>
+
+            <!-- Learning Goals -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-green-400">Learning Goals</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Advanced React Patterns</li>
+                    <li>• Machine Learning Basics</li>
+                    <li>• Game Development with Unity</li>
+                    <li>• Business Strategy</li>
+                    <li>• Mobile App Development</li>
+                </ul>
+            </div>
+
+            <!-- Useful Links -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-purple-400">Useful Links</h3>
+                </div>
+                <div class="space-y-2">
+                    <a href="https://github.com/feehab" class="block text-gray-300 hover:text-blue-400 transition-colors">• GitHub Profile</a>
+                    <a href="https://linkedin.com/in/feehab" class="block text-gray-300 hover:text-blue-400 transition-colors">• LinkedIn</a>
+                    <a href="#" class="block text-gray-300 hover:text-blue-400 transition-colors">• Design Resources</a>
+                    <a href="#" class="block text-gray-300 hover:text-blue-400 transition-colors">• Development Tools</a>
+                    <a href="#" class="block text-gray-300 hover:text-blue-400 transition-colors">• Gaming Communities</a>
+                </div>
+            </div>
+
+            <!-- Notes & Reminders -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-red-400">Notes & Reminders</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Update portfolio weekly</li>
+                    <li>• Practice coding daily</li>
+                    <li>• Network with developers</li>
+                    <li>• Document learning progress</li>
+                    <li>• Backup projects regularly</li>
+                </ul>
+            </div>
+
+            <!-- Gaming Schedule -->
+            <div class="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-indigo-400">Gaming Schedule</h3>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Valorant: Evening sessions</li>
+                    <li>• CS2: Weekend tournaments</li>
+                    <li>• Free Fire: Mobile breaks</li>
+                    <li>• Roblox: Creative time</li>
+                    <li>• Open World: Relaxation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <section class="mt-16">
+            <h3 class="text-2xl font-semibold text-center mb-8 text-blue-400">Quick Actions</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+                    Add New Idea
+                </button>
+                <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300">
+                    Update Progress
+                </button>
+                <button class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300">
+                    Save Notes
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 MD Yeomun Hasan (FEEHAB). Personal Work Hub.</p>
+                <p class="text-sm mt-1">Keep building, keep creating! 🚀</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

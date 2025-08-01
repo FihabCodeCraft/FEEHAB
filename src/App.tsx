@@ -31,6 +31,7 @@ const App = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
+  const [showAboutDropdown, setShowAboutDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -254,7 +255,52 @@ const App = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
+              <button
+                onClick={() => scrollToSection('home')}
+                className={`capitalize transition-colors duration-200 hover:text-blue-400 ${
+                  activeSection === 'home' ? 'text-blue-400' : 'text-gray-300'
+                }`}
+              >
+                home
+              </button>
+              
+              {/* About with dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setShowAboutDropdown(true)}
+                onMouseLeave={() => setShowAboutDropdown(false)}
+              >
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className={`capitalize transition-colors duration-200 hover:text-blue-400 flex items-center ${
+                    activeSection === 'about' ? 'text-blue-400' : 'text-gray-300'
+                  }`}
+                >
+                  about
+                  <ChevronDown className="w-4 h-4 ml-1" />
+                </button>
+                
+                {showAboutDropdown && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50">
+                    <button
+                      onClick={() => scrollToSection('about')}
+                      className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-t-lg transition-colors duration-200"
+                    >
+                      About Me
+                    </button>
+                    <a
+                      href="/work-hub"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-lg transition-colors duration-200"
+                    >
+                      Work Hub
+                    </a>
+                  </div>
+                )}
+              </div>
+              
+              {['gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
