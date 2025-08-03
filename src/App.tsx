@@ -35,10 +35,6 @@ const App = () => {
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
 
-  if (showWorkHub) {
-    return <WorkHub onBack={() => setShowWorkHub(false)} />;
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'];
@@ -246,6 +242,10 @@ const App = () => {
       featured: false
     }
   ];
+
+  if (showWorkHub) {
+    return <WorkHub onBack={() => setShowWorkHub(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
