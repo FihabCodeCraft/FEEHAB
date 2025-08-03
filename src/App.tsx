@@ -267,11 +267,10 @@ const App = () => {
               {/* About with dropdown */}
               <div 
                 className="relative"
-                onMouseEnter={() => setShowAboutDropdown(true)}
-                onMouseLeave={() => setShowAboutDropdown(false)}
               >
                 <button
                   onClick={() => scrollToSection('about')}
+                  onMouseEnter={() => setShowAboutDropdown(true)}
                   className={`capitalize transition-colors duration-200 hover:text-blue-400 flex items-center ${
                     activeSection === 'about' ? 'text-blue-400' : 'text-gray-300'
                   }`}
@@ -281,7 +280,11 @@ const App = () => {
                 </button>
                 
                 {showAboutDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50">
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowAboutDropdown(true)}
+                    onMouseLeave={() => setShowAboutDropdown(false)}
+                  >
                     <button
                       onClick={() => scrollToSection('about')}
                       className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-t-lg transition-colors duration-200"
@@ -772,18 +775,11 @@ const App = () => {
                   
                   <div className="flex space-x-4">
                     <a 
-                      href={project.github}
-                      className="flex items-center text-gray-400 hover:text-white transition-colors duration-200"
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </a>
-                    <a 
-                      href={project.live}
-                      className="flex items-center text-gray-400 hover:text-white transition-colors duration-200"
+                      href="/projects-showcase"
+                      className="flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200 font-semibold"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
+                      See Projects
                     </a>
                   </div>
                 </div>
