@@ -302,7 +302,7 @@ const App = () => {
                       className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-lg transition-colors duration-200"
                     >
                       Work Hub
-                    </button>
+                    </a>
                   </div>
                 )}
               </div>
