@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import WorkHub from './WorkHub';
 import { 
   Github, 
   Linkedin, 
@@ -27,11 +28,16 @@ import {
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showWorkHub, setShowWorkHub] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+
+  if (showWorkHub) {
+    return <WorkHub onBack={() => setShowWorkHub(false)} />;
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -292,11 +298,11 @@ const App = () => {
                       About Me
                     </button>
                     <a
-                      href="/work-hub"
+                      onClick={() => setShowWorkHub(true)}
                       className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-lg transition-colors duration-200"
                     >
                       Work Hub
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
