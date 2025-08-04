@@ -6,9 +6,11 @@ interface WorkHubProps {
 }
 
 const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
-  const [showModal, setShowModal] = useState(false);
   const [selectedWork, setSelectedWork] = useState('');
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [withdrawalMethod, setWithdrawalMethod] = useState('');
+  const [withdrawalAccount, setWithdrawalAccount] = useState('');
+  const [email, setEmail] = useState('');
 
   const jobs = [
     {
@@ -121,15 +123,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
     }
   ];
 
-  const openModal = (workTitle: string) => {
+  const selectWork = (workTitle: string) => {
     setSelectedWork(workTitle);
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setSelectedWork('');
-    setUploadedFiles([]);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,7 +139,12 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     alert('Work submitted successfully! You will receive confirmation and payment details soon.');
-    closeModal();
+    // Reset form
+    setSelectedWork('');
+    setUploadedFiles([]);
+    setWithdrawalMethod('');
+    setWithdrawalAccount('');
+    setEmail('');
   };
 
   const getCategoryIcon = (category: string) => {
