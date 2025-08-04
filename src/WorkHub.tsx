@@ -191,6 +191,9 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex gap-8">
+          {/* Left Side - Job Listings */}
+          <div className="flex-1">
         {/* Welcome Section */}
         <section className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
@@ -236,12 +239,14 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {jobs.map((job) => (
               <div
                 key={job.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 transition-all duration-300 cursor-pointer hover:shadow-md hover:-translate-y-1"
-                onClick={() => openModal(job.title)}
+                className={`bg-white rounded-xl shadow-sm border p-6 transition-all duration-300 cursor-pointer hover:shadow-md hover:-translate-y-1 ${
+                  selectedWork === job.title ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                }`}
+                onClick={() => selectWork(job.title)}
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-2">
@@ -276,141 +281,191 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
             ))}
           </div>
         </section>
-      </main>
+          </div>
 
-      {/* Work Submission Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-gray-800">Submit Your Work</h3>
-                <button onClick={closeModal} className="text-gray-400 hover:text-gray-600">
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
-            
-            <form className="p-6 space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Which work did you complete?</label>
-                <select 
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                  required
-                  value={selectedWork}
-                  onChange={(e) => setSelectedWork(e.target.value)}
-                >
-                  <option value="">Select completed work...</option>
-                  {jobs.map((job) => (
-                    <option key={job.id} value={job.title}>{job.title}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Work Type</label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
-                  <option value="">Select work type...</option>
-                  <option value="Social Media Management">Social Media Management</option>
-                  <option value="Data Entry">Data Entry</option>
-                  <option value="Content Creation">Content Creation</option>
-                  <option value="Video Editing">Video Editing</option>
-                  <option value="Graphic Design">Graphic Design</option>
-                  <option value="Web Development">Web Development</option>
-                  <option value="Digital Marketing">Digital Marketing</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Platform</label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
-                  <option value="">Select platform...</option>
-                  <option value="Facebook">Facebook</option>
-                  <option value="Instagram">Instagram</option>
-                  <option value="YouTube">YouTube</option>
-                  <option value="LinkedIn">LinkedIn</option>
-                  <option value="Twitter">Twitter</option>
-                  <option value="TikTok">TikTok</option>
-                  <option value="Website">Website</option>
-                  <option value="Email">Email</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Upload Attachment</label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
-                  <input 
-                    type="file" 
-                    id="fileUpload" 
-                    className="hidden" 
-                    multiple 
-                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip,.rar" 
-                    onChange={handleFileUpload}
+          {/* Right Side - Work Submission Panel */}
+          <div className="w-96">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-8">
+              <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                <Upload className="w-5 h-5 mr-2 text-blue-600" />
+                Submit Your Work
+              </h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Email Field */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your.email@example.com"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
-                  <label htmlFor="fileUpload" className="cursor-pointer">
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">Click to upload files or drag and drop</p>
-                    <p className="text-sm text-gray-400 mt-1">Support: Images, Documents, ZIP files (Max 500MB)</p>
-                  </label>
                 </div>
-                
-                {uploadedFiles.length > 0 && (
-                  <div className="mt-3 space-y-2">
-                    {uploadedFiles.map((file, index) => (
-                      <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded border">
-                        <div className="flex items-center space-x-2">
-                          {file.type.startsWith('image/') ? (
-                            <Image className="w-4 h-4 text-gray-500" />
-                          ) : file.type.includes('zip') || file.type.includes('rar') ? (
-                            <Archive className="w-4 h-4 text-gray-500" />
-                          ) : (
-                            <FileText className="w-4 h-4 text-gray-500" />
-                          )}
-                          <span className="text-sm text-gray-700">{file.name}</span>
-                          <span className="text-xs text-gray-500">({(file.size / (1024 * 1024)).toFixed(2)} MB)</span>
-                        </div>
-                        <button 
-                          type="button" 
-                          onClick={() => removeFile(index)} 
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
+
+                {/* Work Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Which work did you complete? *</label>
+                  <select 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" 
+                    required
+                    value={selectedWork}
+                    onChange={(e) => setSelectedWork(e.target.value)}
+                  >
+                    <option value="">Select completed work...</option>
+                    {jobs.map((job) => (
+                      <option key={job.id} value={job.title}>{job.title}</option>
                     ))}
+                  </select>
+                </div>
+
+                {/* Work Type */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Work Type *</label>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" required>
+                    <option value="">Select work type...</option>
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="Data Entry">Data Entry</option>
+                    <option value="Content Creation">Content Creation</option>
+                    <option value="Video Editing">Video Editing</option>
+                    <option value="Graphic Design">Graphic Design</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                  </select>
+                </div>
+
+                {/* Platform */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Platform *</label>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" required>
+                    <option value="">Select platform...</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="YouTube">YouTube</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Twitter">Twitter</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="Website">Website</option>
+                    <option value="Email">Email</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                {/* Withdrawal Method */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Withdrawal Method *</label>
+                  <select 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" 
+                    required
+                    value={withdrawalMethod}
+                    onChange={(e) => setWithdrawalMethod(e.target.value)}
+                  >
+                    <option value="">Select withdrawal method...</option>
+                    <option value="bkash">bKash</option>
+                    <option value="nagad">Nagad</option>
+                    <option value="pathao-pay">Pathao Pay</option>
+                    <option value="usdt-polygon">USDT (Polygon)</option>
+                  </select>
+                </div>
+
+                {/* Withdrawal Account */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {withdrawalMethod === 'usdt-polygon' ? 'Wallet Address' : 'Account Number'} *
+                  </label>
+                  <input
+                    type="text"
+                    value={withdrawalAccount}
+                    onChange={(e) => setWithdrawalAccount(e.target.value)}
+                    placeholder={
+                      withdrawalMethod === 'usdt-polygon' 
+                        ? '0x...' 
+                        : withdrawalMethod === 'bkash' || withdrawalMethod === 'nagad' 
+                        ? '01XXXXXXXXX' 
+                        : 'Enter account details'
+                    }
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  />
+                  {withdrawalMethod && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      {withdrawalMethod === 'usdt-polygon' && 'Enter your Polygon network USDT wallet address'}
+                      {(withdrawalMethod === 'bkash' || withdrawalMethod === 'nagad') && 'Enter your mobile number (11 digits)'}
+                      {withdrawalMethod === 'pathao-pay' && 'Enter your Pathao Pay account number'}
+                    </p>
+                  )}
+                </div>
+
+                {/* File Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Upload Attachment *</label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-400 transition-colors">
+                    <input 
+                      type="file" 
+                      id="fileUpload" 
+                      className="hidden" 
+                      multiple 
+                      accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip,.rar" 
+                      onChange={handleFileUpload}
+                    />
+                    <label htmlFor="fileUpload" className="cursor-pointer">
+                      <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                      <p className="text-gray-600 text-sm">Click to upload files</p>
+                      <p className="text-xs text-gray-400 mt-1">Max 500MB</p>
+                    </label>
                   </div>
-                )}
-              </div>
+                  
+                  {uploadedFiles.length > 0 && (
+                    <div className="mt-3 space-y-2">
+                      {uploadedFiles.map((file, index) => (
+                        <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded border">
+                          <div className="flex items-center space-x-2">
+                            {file.type.startsWith('image/') ? (
+                              <Image className="w-4 h-4 text-gray-500" />
+                            ) : file.type.includes('zip') || file.type.includes('rar') ? (
+                              <Archive className="w-4 h-4 text-gray-500" />
+                            ) : (
+                              <FileText className="w-4 h-4 text-gray-500" />
+                            )}
+                            <span className="text-sm text-gray-700 truncate">{file.name}</span>
+                          </div>
+                          <button 
+                            type="button" 
+                            onClick={() => removeFile(index)} 
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Additional Notes (Optional)</label>
-                <textarea 
-                  rows={4} 
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                  placeholder="Any additional information about your submission..."
-                ></textarea>
-              </div>
+                {/* Additional Notes */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
+                  <textarea 
+                    rows={3} 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none" 
+                    placeholder="Any additional information..."
+                  ></textarea>
+                </div>
 
-              <div className="flex space-x-4">
-                <button 
-                  type="button" 
-                  onClick={closeModal} 
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  Cancel
-                </button>
+                {/* Submit Button */}
                 <button 
                   type="submit" 
-                  className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-semibold"
                 >
                   Submit Work
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      )}
+      </main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-20">
