@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Upload, X, FileText, Image, Archive } from 'lucide-react';
+import { ArrowLeft, Upload, X, FileText, Image, Archive, Clock, DollarSign, Users, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface WorkHubProps {
   onBack: () => void;
@@ -11,120 +11,106 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
   const [withdrawalMethod, setWithdrawalMethod] = useState('');
   const [withdrawalAccount, setWithdrawalAccount] = useState('');
   const [email, setEmail] = useState('');
+  const [showJobDetails, setShowJobDetails] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<any>(null);
 
   const jobs = [
     {
       id: 1,
       title: 'Facebook Account Creation',
       description: 'Create professional Facebook business accounts with complete profile setup and verification.',
+      detailedDescription: 'You will need to create a Facebook business account using provided business information. This includes setting up the profile with business details, uploading provided images, and completing the verification process. All materials and step-by-step instructions will be provided.',
       instructions: [
-        'Create business Facebook account',
-        'Complete profile with provided details',
-        'Upload profile and cover photos',
-        'Verify account via phone/email'
+        'Create business Facebook account using provided email',
+        'Complete profile with provided business details',
+        'Upload profile and cover photos (provided)',
+        'Verify account via phone/email verification',
+        'Set up basic business information and contact details',
+        'Take screenshots of completed profile for submission'
       ],
-      income: '$25',
+      requirements: [
+        'Must have valid phone number for verification',
+        'Basic understanding of Facebook interface',
+        'Reliable internet connection',
+        'Ability to follow detailed instructions'
+      ],
+      payRate: '$3 per hour',
+      estimatedTime: '2-3 hours',
+      totalEarning: '$6-9',
       category: 'Social Media',
       platform: 'Facebook',
-      timeEstimate: '2 hours',
-      paymentMethod: 'PayPal',
+      available: true,
       badge: 'New',
-      badgeColor: 'bg-green-500'
+      badgeColor: 'bg-green-500',
+      difficulty: 'Easy'
     },
     {
       id: 2,
-      title: 'Instagram Content Posting',
-      description: 'Post engaging content on Instagram accounts with proper hashtags and scheduling.',
+      title: 'Data Entry Task',
+      description: 'Enter customer data from PDF files into Excel spreadsheets with accuracy.',
+      detailedDescription: 'You will receive PDF files containing customer information that needs to be accurately transferred to Excel spreadsheets. This requires attention to detail and data accuracy. Templates and formatting guidelines will be provided.',
       instructions: [
-        'Post provided images/videos',
-        'Add relevant hashtags (15-20)',
-        'Write engaging captions',
-        'Schedule posts at optimal times'
+        'Download provided PDF files from secure link',
+        'Extract customer information (name, email, phone, address)',
+        'Input data into provided Excel template',
+        'Verify accuracy of all entered data',
+        'Format data according to provided guidelines',
+        'Submit completed Excel file for review'
       ],
-      income: '$15',
-      category: 'Social Media',
-      platform: 'Instagram',
-      timeEstimate: '1 hour',
-      paymentMethod: 'Bkash',
-      badge: 'Popular',
-      badgeColor: 'bg-orange-500'
+      requirements: [
+        'Proficiency in Microsoft Excel or Google Sheets',
+        'High attention to detail and accuracy',
+        'Good typing speed (minimum 40 WPM)',
+        'Basic understanding of data formatting'
+      ],
+      payRate: '$4 per hour',
+      estimatedTime: '3-4 hours',
+      totalEarning: '$12-16',
+      category: 'Data Entry',
+      platform: 'Excel',
+      available: true,
+      badge: 'High Paying',
+      badgeColor: 'bg-purple-500',
+      difficulty: 'Medium'
     },
     {
       id: 3,
-      title: 'Data Entry Task',
-      description: 'Enter customer data from PDF files into Excel spreadsheets with accuracy.',
+      title: 'Social Media Account Setup',
+      description: 'Set up and optimize social media accounts for businesses across multiple platforms.',
+      detailedDescription: 'Complete setup of business social media accounts including profile optimization, bio writing, and initial content posting. You will work with provided brand guidelines and content materials.',
       instructions: [
-        'Download provided PDF files',
-        'Extract customer information',
-        'Input data into Excel template',
-        'Verify accuracy before submission'
+        'Create accounts on specified social media platforms',
+        'Set up profiles with provided business information',
+        'Write engaging bio/description using brand guidelines',
+        'Upload profile pictures and cover images',
+        'Configure account settings and privacy options',
+        'Post initial welcome content (provided)'
       ],
-      income: '$40',
-      category: 'Data Entry',
-      platform: 'Excel',
-      timeEstimate: '3 hours',
-      paymentMethod: 'Bank Transfer',
-      badge: 'High Paying',
-      badgeColor: 'bg-purple-500'
-    },
-    {
-      id: 4,
-      title: 'Website Content Writing',
-      description: 'Write SEO-optimized content for business websites and landing pages.',
-      instructions: [
-        'Research target keywords',
-        'Write 500-800 word articles',
-        'Include SEO best practices',
-        'Proofread for grammar/spelling'
+      requirements: [
+        'Experience with major social media platforms',
+        'Understanding of business profile optimization',
+        'Good writing skills for bio creation',
+        'Knowledge of social media best practices'
       ],
-      income: '$30',
-      category: 'Content Creation',
-      platform: 'Website',
-      timeEstimate: '4 hours',
-      paymentMethod: 'PayPal',
-      badge: 'Urgent',
-      badgeColor: 'bg-red-500'
-    },
-    {
-      id: 5,
-      title: 'YouTube Video Editing',
-      description: 'Edit raw footage into engaging YouTube videos with transitions and effects.',
-      instructions: [
-        'Download raw video files',
-        'Add intro/outro templates',
-        'Include background music',
-        'Export in 1080p quality'
-      ],
-      income: '$50',
-      category: 'Video Editing',
-      platform: 'YouTube',
-      timeEstimate: '5 hours',
-      paymentMethod: 'Nagad',
-      badge: 'New',
-      badgeColor: 'bg-green-500'
-    },
-    {
-      id: 6,
-      title: 'Logo Design',
-      description: 'Create professional logos for small businesses and startups.',
-      instructions: [
-        'Review brand requirements',
-        'Create 3 logo concepts',
-        'Provide vector files (AI/SVG)',
-        'Include color variations'
-      ],
-      income: '$35',
-      category: 'Graphic Design',
-      platform: 'Design Software',
-      timeEstimate: '6 hours',
-      paymentMethod: 'Rocket',
+      payRate: '$5 per hour',
+      estimatedTime: '2-3 hours',
+      totalEarning: '$10-15',
+      category: 'Social Media',
+      platform: 'Multiple Platforms',
+      available: false,
       badge: 'Popular',
-      badgeColor: 'bg-orange-500'
+      badgeColor: 'bg-orange-500',
+      difficulty: 'Easy'
     }
   ];
 
   const selectWork = (workTitle: string) => {
     setSelectedWork(workTitle);
+  };
+
+  const showJobDetailsModal = (job: any) => {
+    setSelectedJob(job);
+    setShowJobDetails(true);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,12 +139,6 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         return '📱';
       case 'Data Entry':
         return '📊';
-      case 'Content Creation':
-        return '✍️';
-      case 'Video Editing':
-        return '🎬';
-      case 'Graphic Design':
-        return '🎨';
       default:
         return '💼';
     }
@@ -194,93 +174,114 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         <div className="flex gap-8">
           {/* Left Side - Job Listings */}
           <div className="flex-1">
-        {/* Welcome Section */}
-        <section className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800">
-            Available Work Opportunities
-          </h2>
-          <p className="text-lg text-gray-600 mb-6">
-            Browse through available tasks and submit your completed work
-          </p>
-          <div className="flex justify-center space-x-4 mb-8">
-            <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
-              <span className="text-2xl font-bold text-blue-600">12</span>
-              <p className="text-sm text-gray-500">Active Jobs</p>
-            </div>
-            <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
-              <span className="text-2xl font-bold text-green-600">$2,450</span>
-              <p className="text-sm text-gray-500">Total Earnings</p>
-            </div>
-            <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
-              <span className="text-2xl font-bold text-purple-600">8</span>
-              <p className="text-sm text-gray-500">Completed</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Job Listings */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-semibold text-gray-800">Job Listings</h3>
-            <div className="flex space-x-2">
-              <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option>All Categories</option>
-                <option>Social Media</option>
-                <option>Data Entry</option>
-                <option>Content Creation</option>
-                <option>Video Editing</option>
-                <option>Graphic Design</option>
-              </select>
-              <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option>Sort by: Latest</option>
-                <option>Sort by: Highest Pay</option>
-                <option>Sort by: Deadline</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {jobs.map((job) => (
-              <div
-                key={job.id}
-                className={`bg-white rounded-xl shadow-sm border p-6 transition-all duration-300 cursor-pointer hover:shadow-md hover:-translate-y-1 ${
-                  selectedWork === job.title ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
-                }`}
-                onClick={() => selectWork(job.title)}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-lg">
-                      {getCategoryIcon(job.category)}
-                    </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold text-white ${job.badgeColor}`}>
-                      {job.badge}
-                    </span>
-                  </div>
-                  <span className="text-lg font-bold text-green-600">{job.income}</span>
+            {/* Welcome Section */}
+            <section className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-gray-800">
+                Available Work Opportunities
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Browse through available tasks and submit your completed work
+              </p>
+              <div className="flex justify-center space-x-4 mb-8">
+                <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
+                  <span className="text-2xl font-bold text-blue-600">{jobs.filter(job => job.available).length}</span>
+                  <p className="text-sm text-gray-500">Available Jobs</p>
                 </div>
-                
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">{job.title}</h4>
-                <p className="text-gray-600 text-sm mb-4">{job.description}</p>
-                
-                <div className="space-y-2 mb-4">
-                  <h5 className="font-medium text-gray-700 text-sm">Instructions:</h5>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    {job.instructions.map((instruction, i) => (
-                      <li key={i}>• {instruction}</li>
-                    ))}
-                  </ul>
+                <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
+                  <span className="text-2xl font-bold text-green-600">$3-5</span>
+                  <p className="text-sm text-gray-500">Per Hour</p>
                 </div>
-                
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>{getCategoryIcon(job.category)} {job.category}</span>
-                  <span>⏰ {job.timeEstimate}</span>
-                  <span>💰 {job.paymentMethod}</span>
+                <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
+                  <span className="text-2xl font-bold text-purple-600">2-4</span>
+                  <p className="text-sm text-gray-500">Hours Work</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </section>
+
+            {/* Job Listings */}
+            <section className="mb-12">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-semibold text-gray-800">Job Listings</h3>
+                <div className="flex space-x-2">
+                  <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                    <option>All Categories</option>
+                    <option>Social Media</option>
+                    <option>Data Entry</option>
+                  </select>
+                  <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                    <option>All Status</option>
+                    <option>Available</option>
+                    <option>Unavailable</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {jobs.map((job) => (
+                  <div
+                    key={job.id}
+                    className={`bg-white rounded-xl shadow-sm border p-6 transition-all duration-300 ${
+                      job.available 
+                        ? 'cursor-pointer hover:shadow-md hover:-translate-y-1' 
+                        : 'opacity-60 cursor-not-allowed'
+                    } ${
+                      selectedWork === job.title ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                    }`}
+                    onClick={() => job.available && selectWork(job.title)}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-lg">
+                          {getCategoryIcon(job.category)}
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-xs font-semibold text-white ${job.badgeColor}`}>
+                          {job.badge}
+                        </span>
+                        {job.available ? (
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold text-green-700 bg-green-100">
+                            Available
+                          </span>
+                        ) : (
+                          <span className="px-2 py-1 rounded-full text-xs font-semibold text-red-700 bg-red-100">
+                            Unavailable
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-green-600">{job.payRate}</div>
+                        <div className="text-sm text-gray-500">{job.totalEarning} total</div>
+                      </div>
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold text-gray-800 mb-2">{job.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{job.description}</p>
+                    
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span className="flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {job.estimatedTime}
+                      </span>
+                      <span className="flex items-center">
+                        <Users className="w-3 h-3 mr-1" />
+                        {job.difficulty}
+                      </span>
+                      <span>{getCategoryIcon(job.category)} {job.category}</span>
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        showJobDetailsModal(job);
+                      }}
+                      className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm font-medium"
+                      disabled={!job.available}
+                    >
+                      {job.available ? 'View Details' : 'Currently Unavailable'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
 
           {/* Right Side - Work Submission Panel */}
@@ -315,24 +316,9 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                     onChange={(e) => setSelectedWork(e.target.value)}
                   >
                     <option value="">Select completed work...</option>
-                    {jobs.map((job) => (
+                    {jobs.filter(job => job.available).map((job) => (
                       <option key={job.id} value={job.title}>{job.title}</option>
                     ))}
-                  </select>
-                </div>
-
-                {/* Work Type */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Work Type *</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" required>
-                    <option value="">Select work type...</option>
-                    <option value="Social Media Management">Social Media Management</option>
-                    <option value="Data Entry">Data Entry</option>
-                    <option value="Content Creation">Content Creation</option>
-                    <option value="Video Editing">Video Editing</option>
-                    <option value="Graphic Design">Graphic Design</option>
-                    <option value="Web Development">Web Development</option>
-                    <option value="Digital Marketing">Digital Marketing</option>
                   </select>
                 </div>
 
@@ -343,12 +329,10 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                     <option value="">Select platform...</option>
                     <option value="Facebook">Facebook</option>
                     <option value="Instagram">Instagram</option>
-                    <option value="YouTube">YouTube</option>
                     <option value="LinkedIn">LinkedIn</option>
-                    <option value="Twitter">Twitter</option>
-                    <option value="TikTok">TikTok</option>
-                    <option value="Website">Website</option>
-                    <option value="Email">Email</option>
+                    <option value="Excel">Excel</option>
+                    <option value="Google Sheets">Google Sheets</option>
+                    <option value="Multiple Platforms">Multiple Platforms</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -454,6 +438,20 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                   ></textarea>
                 </div>
 
+                {/* Withdrawal Information */}
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-start space-x-2">
+                    <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="text-sm font-semibold text-blue-800 mb-1">Withdrawal Information</h4>
+                      <p className="text-xs text-blue-700">
+                        Withdrawal takes highest 4 to 5 hours for delay issues of checking work, 
+                        but in 1 hour you will receive the withdrawal expected.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Submit Button */}
                 <button 
                   type="submit" 
@@ -466,6 +464,101 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
           </div>
         </div>
       </main>
+
+      {/* Job Details Modal */}
+      {showJobDetails && selectedJob && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-800">{selectedJob.title}</h2>
+                <button
+                  onClick={() => setShowJobDetails(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                {/* Job Overview */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <DollarSign className="w-5 h-5 text-green-600" />
+                      <span className="font-semibold text-green-800">Pay Rate</span>
+                    </div>
+                    <div className="text-2xl font-bold text-green-600">{selectedJob.payRate}</div>
+                    <div className="text-sm text-green-700">Total: {selectedJob.totalEarning}</div>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Clock className="w-5 h-5 text-blue-600" />
+                      <span className="font-semibold text-blue-800">Time Required</span>
+                    </div>
+                    <div className="text-2xl font-bold text-blue-600">{selectedJob.estimatedTime}</div>
+                    <div className="text-sm text-blue-700">Difficulty: {selectedJob.difficulty}</div>
+                  </div>
+                </div>
+
+                {/* Detailed Description */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Job Description</h3>
+                  <p className="text-gray-600 leading-relaxed">{selectedJob.detailedDescription}</p>
+                </div>
+
+                {/* Step-by-step Instructions */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Step-by-step Instructions</h3>
+                  <ol className="space-y-2">
+                    {selectedJob.instructions.map((instruction: string, index: number) => (
+                      <li key={index} className="flex items-start space-x-3">
+                        <span className="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                          {index + 1}
+                        </span>
+                        <span className="text-gray-700">{instruction}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                {/* Requirements */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Requirements</h3>
+                  <ul className="space-y-2">
+                    {selectedJob.requirements.map((requirement: string, index: number) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700">{requirement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex space-x-4 pt-4 border-t">
+                  <button
+                    onClick={() => {
+                      selectWork(selectedJob.title);
+                      setShowJobDetails(false);
+                    }}
+                    className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-semibold"
+                    disabled={!selectedJob.available}
+                  >
+                    {selectedJob.available ? 'Select This Job' : 'Currently Unavailable'}
+                  </button>
+                  <button
+                    onClick={() => setShowJobDetails(false)}
+                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-20">
