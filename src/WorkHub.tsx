@@ -171,7 +171,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Side - Job Listings */}
           <div className="flex-1">
             {/* Welcome Section */}
@@ -216,7 +216,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {jobs.map((job) => (
                   <div
                     key={job.id}
@@ -285,8 +285,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
           </div>
 
           {/* Right Side - Work Submission Panel */}
-          <div className="w-96">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-8">
+          <div className="w-full lg:w-96 order-first lg:order-last">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 lg:p-6 lg:sticky lg:top-8">
               <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
                 <Upload className="w-5 h-5 mr-2 text-blue-600" />
                 Submit Your Work
@@ -302,7 +302,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your.email@example.com"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-900"
                   />
                 </div>
 
@@ -310,7 +310,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Which work did you complete? *</label>
                   <select 
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-900" 
                     required
                     value={selectedWork}
                     onChange={(e) => setSelectedWork(e.target.value)}
@@ -325,7 +325,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                 {/* Platform */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Platform *</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" required>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-900" required>
                     <option value="">Select platform...</option>
                     <option value="Facebook">Facebook</option>
                     <option value="Instagram">Instagram</option>
@@ -341,7 +341,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Withdrawal Method *</label>
                   <select 
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-900" 
                     required
                     value={withdrawalMethod}
                     onChange={(e) => setWithdrawalMethod(e.target.value)}
@@ -371,7 +371,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                         : 'Enter account details'
                     }
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-900"
                   />
                   {withdrawalMethod && (
                     <p className="text-xs text-gray-500 mt-1">
@@ -433,7 +433,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
                   <textarea 
                     rows={3} 
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none" 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm resize-none text-gray-900" 
                     placeholder="Any additional information..."
                   ></textarea>
                 </div>
@@ -466,14 +466,14 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Job Details Modal */}
       {showJobDetails && selectedJob && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-gray-800">{selectedJob.title}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 pr-4">{selectedJob.title}</h2>
                 <button
                   onClick={() => setShowJobDetails(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 flex-shrink-0"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -481,7 +481,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
               <div className="space-y-6">
                 {/* Job Overview */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-green-50 p-4 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <DollarSign className="w-5 h-5 text-green-600" />
@@ -535,20 +535,20 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex space-x-4 pt-4 border-t">
+                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 pt-4 border-t">
                   <button
                     onClick={() => {
                       selectWork(selectedJob.title);
                       setShowJobDetails(false);
                     }}
-                    className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-semibold"
+                    className="flex-1 px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-semibold"
                     disabled={!selectedJob.available}
                   >
                     {selectedJob.available ? 'Select This Job' : 'Currently Unavailable'}
                   </button>
                   <button
                     onClick={() => setShowJobDetails(false)}
-                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                    className="px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                   >
                     Close
                   </button>
