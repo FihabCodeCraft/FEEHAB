@@ -466,11 +466,11 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Job Details Modal */}
       {showJobDetails && selectedJob && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-4 sm:p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 pr-4">{selectedJob.title}</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-800 pr-4">{selectedJob.title}</h2>
                 <button
                   onClick={() => setShowJobDetails(false)}
                   className="text-gray-500 hover:text-gray-700 flex-shrink-0"
@@ -487,7 +487,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                       <DollarSign className="w-5 h-5 text-green-600" />
                       <span className="font-semibold text-green-800">Pay Rate</span>
                     </div>
-                    <div className="text-2xl font-bold text-green-600">{selectedJob.payRate}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-green-600">{selectedJob.payRate}</div>
                     <div className="text-sm text-green-700">Total: {selectedJob.totalEarning}</div>
                   </div>
                   <div className="bg-blue-50 p-4 rounded-lg">
@@ -495,7 +495,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                       <Clock className="w-5 h-5 text-blue-600" />
                       <span className="font-semibold text-blue-800">Time Required</span>
                     </div>
-                    <div className="text-2xl font-bold text-blue-600">{selectedJob.estimatedTime}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-blue-600">{selectedJob.estimatedTime}</div>
                     <div className="text-sm text-blue-700">Difficulty: {selectedJob.difficulty}</div>
                   </div>
                 </div>
