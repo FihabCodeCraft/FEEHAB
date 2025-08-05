@@ -171,9 +171,9 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="space-y-8 lg:space-y-0 lg:flex lg:flex-row lg:gap-8">
           {/* Left Side - Job Listings */}
-          <div className="flex-1">
+          <div className="w-full lg:flex-1">
             {/* Welcome Section */}
             <section className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-gray-800">
@@ -285,8 +285,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
           </div>
 
           {/* Right Side - Work Submission Panel */}
-          <div className="w-full lg:w-96 order-first lg:order-last">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 lg:p-6 lg:sticky lg:top-8">
+          <div className="w-full lg:w-96">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-4 lg:top-8">
               <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
                 <Upload className="w-5 h-5 mr-2 text-blue-600" />
                 Submit Your Work
