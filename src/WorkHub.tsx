@@ -459,7 +459,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                     <div>
                       <h4 className="text-sm font-semibold text-blue-800 mb-1">Withdrawal Information</h4>
                       <p className="text-xs text-blue-700">
-                        Withdrawal takes highest 4 to 5 hours for delay issues of checking work, but in 1 hour you will receive the withdrawal expected.
+                       Withdrawals may take up to 4 to 5 hours due to verification delays, but typically, you can expect to receive your withdrawal within 1 hour.
                       </p>
                     </div>
                   </div>
