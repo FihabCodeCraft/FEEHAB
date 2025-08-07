@@ -34,9 +34,9 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Reliable internet connection',
         'Ability to follow detailed instructions'
       ],
-      payRate: '$3 per hour',
+      payRate: '$2-3 per hour',
       estimatedTime: '2-3 hours',
-      totalEarning: '$6-9',
+      totalEarning: '$4-9',
       category: 'Social Media',
       platform: 'Facebook',
       available: true,
@@ -46,58 +46,58 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
     },
     {
       id: 2,
-      title: 'Data Entry Task',
-      description: 'Enter customer data from PDF files into Excel spreadsheets with accuracy.',
-      detailedDescription: 'You will receive PDF files containing customer information that needs to be accurately transferred to Excel spreadsheets. This requires attention to detail and data accuracy. Templates and formatting guidelines will be provided.',
+      title: 'Gmail Account Creation',
+      description: 'Create Gmail accounts with complete profile setup and verification for business use.',
+      detailedDescription: 'You will need to create Gmail accounts using provided information. This includes setting up the account with proper recovery options, completing profile information, and ensuring account security. All necessary details and instructions will be provided.',
       instructions: [
-        'Download provided PDF files from secure link',
-        'Extract customer information (name, email, phone, address)',
-        'Input data into provided Excel template',
-        'Verify accuracy of all entered data',
-        'Format data according to provided guidelines',
-        'Submit completed Excel file for review'
+        'Create Gmail account using provided information',
+        'Set up recovery email and phone number',
+        'Complete profile with provided details',
+        'Verify account through phone/email verification',
+        'Configure security settings as instructed',
+        'Take screenshots of completed account for submission'
       ],
       requirements: [
-        'Proficiency in Microsoft Excel or Google Sheets',
-        'High attention to detail and accuracy',
-        'Good typing speed (minimum 40 WPM)',
-        'Basic understanding of data formatting'
+        'Must have valid phone number for verification',
+        'Basic understanding of Gmail interface',
+        'Reliable internet connection',
+        'Ability to follow security guidelines'
       ],
-      payRate: '$4 per hour',
-      estimatedTime: '3-4 hours',
-      totalEarning: '$12-16',
-      category: 'Data Entry',
-      platform: 'Excel',
+      payRate: '$2-3 per hour',
+      estimatedTime: '2-3 hours',
+      totalEarning: '$4-9',
+      category: 'Account Creation',
+      platform: 'Gmail',
       available: true,
       badge: 'High Paying',
       badgeColor: 'bg-purple-500',
-      difficulty: 'Medium'
+      difficulty: 'Easy'
     },
     {
       id: 3,
-      title: 'Social Media Account Setup',
-      description: 'Set up and optimize social media accounts for businesses across multiple platforms.',
-      detailedDescription: 'Complete setup of business social media accounts including profile optimization, bio writing, and initial content posting. You will work with provided brand guidelines and content materials.',
+      title: 'X Account Creator',
+      description: 'Create and set up X (Twitter) accounts with complete profile optimization and verification.',
+      detailedDescription: 'You will create X (formerly Twitter) accounts using provided business information. This includes profile setup, bio writing, profile picture upload, and completing verification steps. All content and guidelines will be provided.',
       instructions: [
-        'Create accounts on specified social media platforms',
-        'Set up profiles with provided business information',
-        'Write engaging bio/description using brand guidelines',
-        'Upload profile pictures and cover images',
-        'Configure account settings and privacy options',
-        'Post initial welcome content (provided)'
+        'Create X account using provided information',
+        'Set up profile with provided business details',
+        'Write engaging bio using provided guidelines',
+        'Upload profile picture and header image',
+        'Configure account settings and privacy',
+        'Complete verification process if required'
       ],
       requirements: [
-        'Experience with major social media platforms',
-        'Understanding of business profile optimization',
+        'Basic understanding of X (Twitter) platform',
         'Good writing skills for bio creation',
-        'Knowledge of social media best practices'
+        'Reliable internet connection',
+        'Ability to follow brand guidelines'
       ],
-      payRate: '$5 per hour',
+      payRate: '$2-3 per hour',
       estimatedTime: '2-3 hours',
-      totalEarning: '$10-15',
+      totalEarning: '$4-9',
       category: 'Social Media',
-      platform: 'Multiple Platforms',
-      available: false,
+      platform: 'X (Twitter)',
+      available: true,
       badge: 'Popular',
       badgeColor: 'bg-orange-500',
       difficulty: 'Easy'
@@ -137,8 +137,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
     switch (category) {
       case 'Social Media':
         return '📱';
-      case 'Data Entry':
-        return '📊';
+      case 'Account Creation':
+        return '📧';
       default:
         return '💼';
     }
@@ -171,6 +171,20 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Advertisement */}
+        <div className="mb-8 flex justify-center">
+          <ins 
+            style={{width: '300px', height: '250px'}} 
+            data-width="300" 
+            data-height="250" 
+            className="p62f15c6fc6" 
+            data-domain="//data159.click" 
+            data-affquery="/96bdedf5f0e507f9653f/62f15c6fc6/?placementName=default22"
+          >
+            <script src="//data159.click/js/responsive.js" async></script>
+          </ins>
+        </div>
+
         <div className="space-y-8 lg:space-y-0 lg:flex lg:flex-row lg:gap-8">
           {/* Left Side - Job Listings */}
           <div className="w-full lg:flex-1">
@@ -206,7 +220,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                   <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                     <option>All Categories</option>
                     <option>Social Media</option>
-                    <option>Data Entry</option>
+                    <option>Account Creation</option>
                   </select>
                   <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                     <option>All Status</option>
@@ -445,7 +459,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                     <div>
                       <h4 className="text-sm font-semibold text-blue-800 mb-1">Withdrawal Information</h4>
                       <p className="text-xs text-blue-700">
-                       Withdrawals are usually processed within 1 hour, but delays of up to 4–5 hours can occur due to verification checks.
+                        Withdrawal takes highest 4 to 5 hours for delay issues of checking work, but in 1 hour you will receive the withdrawal expected.
                       </p>
                     </div>
                   </div>
