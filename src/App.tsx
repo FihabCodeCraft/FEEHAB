@@ -332,7 +332,42 @@ const App = () => {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-800">
-              {['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
+              <button
+                onClick={() => scrollToSection('home')}
+                className={`block w-full text-left py-2 capitalize transition-colors duration-200 hover:text-blue-400 ${
+                  activeSection === 'home' ? 'text-blue-400' : 'text-gray-300'
+                }`}
+              >
+                home
+              </button>
+              
+              {/* About section with submenu */}
+              <div>
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className={`block w-full text-left py-2 capitalize transition-colors duration-200 hover:text-blue-400 ${
+                    activeSection === 'about' ? 'text-blue-400' : 'text-gray-300'
+                  }`}
+                >
+                  about
+                </button>
+                <div className="pl-4 space-y-1">
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="block w-full text-left py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    About Me
+                  </button>
+                  <button
+                    onClick={() => setShowWorkHub(true)}
+                    className="block w-full text-left py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    Work Hub
+                  </button>
+                </div>
+              </div>
+              
+              {['gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
