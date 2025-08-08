@@ -42,7 +42,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
       available: true,
       badge: 'New',
       badgeColor: 'bg-green-500',
-      difficulty: 'Easy'
+      difficulty: 'Easy',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg'
     },
     {
       id: 2,
@@ -71,7 +72,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
       available: true,
       badge: 'High Paying',
       badgeColor: 'bg-purple-500',
-      difficulty: 'Easy'
+      difficulty: 'Easy',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg'
     },
     {
       id: 3,
@@ -100,7 +102,68 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
       available: true,
       badge: 'Popular',
       badgeColor: 'bg-orange-500',
-      difficulty: 'Easy'
+      difficulty: 'Easy',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg'
+    },
+    {
+      id: 4,
+      title: 'Instagram Account Creation',
+      description: 'Create professional Instagram business accounts with complete profile setup and content strategy.',
+      detailedDescription: 'You will create Instagram business accounts using provided brand information. This includes setting up the business profile, adding bio information, uploading profile pictures, and configuring business settings. All brand materials and guidelines will be provided.',
+      instructions: [
+        'Create Instagram business account using provided email',
+        'Set up business profile with provided information',
+        'Upload profile picture and write compelling bio',
+        'Configure business contact information',
+        'Set up Instagram Shopping if required',
+        'Take screenshots of completed profile for verification'
+      ],
+      requirements: [
+        'Must have valid phone number for verification',
+        'Understanding of Instagram business features',
+        'Creative skills for bio writing',
+        'Reliable internet connection'
+      ],
+      payRate: '$2-3 per hour',
+      estimatedTime: '2-3 hours',
+      totalEarning: '$4-9',
+      category: 'Social Media',
+      platform: 'Instagram',
+      available: true,
+      badge: 'Trending',
+      badgeColor: 'bg-pink-500',
+      difficulty: 'Easy',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png'
+    },
+    {
+      id: 5,
+      title: 'LinkedIn Account Creation',
+      description: 'Create professional LinkedIn profiles for business networking and professional presence.',
+      detailedDescription: 'You will create LinkedIn professional accounts using provided career information. This includes setting up the professional profile, adding work experience, skills, and education details. All professional information and guidelines will be provided.',
+      instructions: [
+        'Create LinkedIn account using provided professional email',
+        'Set up professional profile with career details',
+        'Add work experience and education information',
+        'Upload professional profile photo',
+        'Configure privacy and networking settings',
+        'Take screenshots of completed profile for submission'
+      ],
+      requirements: [
+        'Understanding of professional networking',
+        'Good writing skills for professional content',
+        'Knowledge of LinkedIn platform features',
+        'Attention to detail for professional presentation'
+      ],
+      payRate: '$2-3 per hour',
+      estimatedTime: '2-3 hours',
+      totalEarning: '$4-9',
+      category: 'Professional',
+      platform: 'LinkedIn',
+      available: false,
+      badge: 'Professional',
+      badgeColor: 'bg-blue-600',
+      difficulty: 'Medium',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png'
     }
   ];
 
@@ -139,6 +202,8 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         return '📱';
       case 'Account Creation':
         return '📧';
+      case 'Professional':
+        return '💼';
       default:
         return '💼';
     }
