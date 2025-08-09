@@ -301,7 +301,7 @@ const App = () => {
                       onClick={() => setShowWorkHub(true)}
                       className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-lg transition-colors duration-200"
                     >
-                      Work Hub
+                      WorkHub
                     </a>
                   </div>
                 )}
@@ -362,7 +362,7 @@ const App = () => {
                     onClick={() => setShowWorkHub(true)}
                     className="block w-full text-left py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
                   >
-                    Work Hub
+                    WorkHub
                   </button>
                 </div>
               </div>

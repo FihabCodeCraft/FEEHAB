@@ -225,7 +225,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
               </button>
               <div className="border-l border-gray-300 pl-4">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Work Hub
+                  WorkHub
                 </h1>
                 <p className="text-gray-500 text-sm">Professional Job Listings & Task Management</p>
               </div>
@@ -256,7 +256,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
             {/* Welcome Section */}
             <section className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-gray-800">
-                Available Work Opportunities
+                Available WorkHub Opportunities
               </h2>
               <p className="text-lg text-gray-600 mb-6">
                 Browse through available tasks and submit your completed work
@@ -467,11 +467,11 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-400 transition-colors">
                     <input 
                       type="file" 
-                      id="fileUpload" 
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-white p-2 border border-gray-200">
                       className="hidden" 
                       multiple 
-                      accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.zip,.rar" 
-                      onChange={handleFileUpload}
+                      alt={`${job.platform} logo`} 
+                      className="w-full h-full object-contain"
                     />
                     <label htmlFor="fileUpload" className="cursor-pointer">
                       <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
