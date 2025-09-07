@@ -34,16 +34,16 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Reliable internet connection',
         'Ability to follow detailed instructions'
       ],
-      payRate: '$2-3 per hour',
+      payRate: '$2/hr',
       estimatedTime: '2-3 hours',
-      totalEarning: '$4-9',
+      totalEarning: '$4-6',
       category: 'Social Media',
       platform: 'Facebook',
       available: true,
       badge: 'New',
       badgeColor: 'bg-green-500',
       difficulty: 'Easy',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png'
     },
     {
       id: 2,
@@ -64,16 +64,16 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Reliable internet connection',
         'Ability to follow security guidelines'
       ],
-      payRate: '$2-3 per hour',
+      payRate: '$2/hr',
       estimatedTime: '2-3 hours',
-      totalEarning: '$4-9',
+      totalEarning: '$4-6',
       category: 'Account Creation',
       platform: 'Gmail',
       available: true,
       badge: 'High Paying',
       badgeColor: 'bg-purple-500',
       difficulty: 'Easy',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png'
     },
     {
       id: 3,
@@ -94,16 +94,16 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Reliable internet connection',
         'Ability to follow brand guidelines'
       ],
-      payRate: '$2-3 per hour',
+      payRate: '$2/hr',
       estimatedTime: '2-3 hours',
-      totalEarning: '$4-9',
+      totalEarning: '$4-6',
       category: 'Social Media',
       platform: 'X (Twitter)',
       available: true,
       badge: 'Popular',
       badgeColor: 'bg-orange-500',
       difficulty: 'Easy',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/512px-X_logo_2023.svg.png'
     },
     {
       id: 4,
@@ -124,16 +124,16 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Creative skills for bio writing',
         'Reliable internet connection'
       ],
-      payRate: '$2-3 per hour',
+      payRate: '$2/hr',
       estimatedTime: '2-3 hours',
-      totalEarning: '$4-9',
+      totalEarning: '$4-6',
       category: 'Social Media',
       platform: 'Instagram',
       available: true,
       badge: 'Trending',
       badgeColor: 'bg-pink-500',
       difficulty: 'Easy',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/512px-Instagram_logo_2016.svg.png'
     },
     {
       id: 5,
@@ -154,16 +154,16 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
         'Knowledge of LinkedIn platform features',
         'Attention to detail for professional presentation'
       ],
-      payRate: '$2-3 per hour',
+      payRate: '$2/hr',
       estimatedTime: '2-3 hours',
-      totalEarning: '$4-9',
+      totalEarning: '$4-6',
       category: 'Professional',
       platform: 'LinkedIn',
       available: false,
       badge: 'Professional',
       badgeColor: 'bg-blue-600',
       difficulty: 'Medium',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png'
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/512px-LinkedIn_logo_initials.png'
     }
   ];
 
@@ -267,7 +267,7 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
                   <p className="text-sm text-gray-500">Available Jobs</p>
                 </div>
                 <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
-                  <span className="text-2xl font-bold text-green-600">$3-5</span>
+                  <span className="text-2xl font-bold text-green-600">$2/hr</span>
                   <p className="text-sm text-gray-500">Per Hour</p>
                 </div>
                 <div className="bg-white px-4 py-2 rounded-lg shadow-sm border">
