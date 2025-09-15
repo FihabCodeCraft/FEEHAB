@@ -132,6 +132,26 @@ body {
   animation: gradient-shift 6s ease infinite;
 }
 
+/* Fast & Furious style zoom animation */
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.1) translateZ(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+  }
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 /* Custom focus styles */
 input:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
