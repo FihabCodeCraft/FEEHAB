@@ -250,6 +250,14 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
           </ins>
         </div>
 
+        {/* New Advertisement */}
+        <div className="mb-8 flex justify-center">
+          <script 
+            src="https://data156.click/c41a14191521b51cbac6/524927406b/?placementName=default"
+            async
+          ></script>
+        </div>
+
         <div className="space-y-8 lg:space-y-0 lg:flex lg:flex-row lg:gap-8">
           {/* Left Side - Job Listings */}
           <div className="w-full lg:flex-1">

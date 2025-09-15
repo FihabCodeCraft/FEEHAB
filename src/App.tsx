@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showWorkHub, setShowWorkHub] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -36,6 +37,11 @@ const App = () => {
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
 
   useEffect(() => {
+    // Loading animation timer
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // 3 seconds loading
+
     const handleScroll = () => {
       const sections = ['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
@@ -55,7 +61,10 @@ const App = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(loadingTimer);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -245,6 +254,77 @@ const App = () => {
 
   if (showWorkHub) {
     return <WorkHub onBack={() => setShowWorkHub(false)} />;
+  }
+
+  // Loading Screen
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -inset-10 opacity-30">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+            <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+          </div>
+        </div>
+        
+        {/* Loading Content */}
+        <div className="relative z-10 text-center">
+          {/* FEEHAB Text with Animation */}
+          <div className="mb-8">
+            <h1 className="text-8xl md:text-9xl font-black tracking-wider">
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                F
+              </span>
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animation-delay-200">
+                E
+              </span>
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animation-delay-400">
+                E
+              </span>
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animation-delay-600">
+                H
+              </span>
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animation-delay-800">
+                A
+              </span>
+              <span className="inline-block animate-bounce-in bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animation-delay-1000">
+                B
+              </span>
+            </h1>
+          </div>
+          
+          {/* Loading Animation */}
+          <div className="flex justify-center items-center space-x-2 mb-4">
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
+            <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce animation-delay-200"></div>
+            <div className="w-3 h-3 bg-pink-400 rounded-full animate-bounce animation-delay-400"></div>
+          </div>
+          
+          {/* Loading Text */}
+          <p className="text-xl text-gray-300 animate-pulse">
+            Loading Experience...
+          </p>
+        </div>
+        
+        {/* Particles Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-white rounded-full opacity-20 animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            ></div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
