@@ -257,11 +257,59 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-black flex items-center justify-center z-50 overflow-hidden">
-        <div className="text-center">
-          <h1 className="text-6xl md:text-8xl font-black text-white animate-zoom-in">
-            FEEHAB
-          </h1>
+      <div className="fixed inset-0 z-50 overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 animate-gradient-shift"></div>
+        
+        {/* Animated particle field */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white opacity-20 rounded-full animate-float-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            ></div>
+          ))}
+        </div>
+        
+        {/* Noise overlay */}
+        <div className="absolute inset-0 opacity-10 bg-noise animate-pulse-slow"></div>
+        
+        {/* Main content */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            {/* FEEHAB letters with sequential animation */}
+            <div className="flex justify-center items-center space-x-1 mb-8">
+              {['F', 'E', 'E', 'H', 'A', 'B'].map((letter, index) => (
+                <span
+                  key={index}
+                  className="text-6xl md:text-8xl font-black text-white animate-letter-appear neon-glow"
+                  style={{
+                    fontFamily: 'Inter, Orbitron, sans-serif',
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: 'both'
+                  }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </div>
+            
+            {/* Progress line */}
+            <div className="w-64 h-0.5 bg-gray-700 mx-auto rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-blue-400 to-purple-500 animate-progress-sweep rounded-full"></div>
+            </div>
+            
+            {/* Loading text */}
+            <p className="text-gray-400 text-sm mt-4 animate-fade-in-delayed">
+              Loading Experience...
+            </p>
+          </div>
         </div>
       </div>
     );
