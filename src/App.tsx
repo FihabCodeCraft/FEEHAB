@@ -295,7 +295,7 @@ const App = () => {
                     animationFillMode: 'both'
                   }}
                 >
-                  MD Yeomun Hasan (FEEHAB)
+                  {letter}
                 </span>
               ))}
             </div>
