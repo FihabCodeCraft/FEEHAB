@@ -1073,7 +1073,7 @@ const App = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type="file"
+                    src="/IMG_20250930_060032_004.webp"
                     name="attachment"
                     accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 file:cursor-pointer"
