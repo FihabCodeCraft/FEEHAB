@@ -809,14 +809,18 @@ const App = () => {
                       <div className="text-right mt-2 md:mt-0">
                         <div className="text-gray-400 text-sm">{edu.period}</div>
                         <div className="text-purple-400 font-semibold">
-                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mx-auto">
-                    <img 
-                      src="/IMG_20250930_060032_004.webp" 
-                      alt="MD Yeomun Hasan (FEEHAB)" 
-                      className="w-full h-full rounded-full object-cover"
-                    />
+                          GPA: {edu.gpa}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
+                        {edu.department}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
                 {edu.clubLink && (
                   <div className="mt-3 flex items-center text-green-400 text-sm">
                     <Users className="w-4 h-4 mr-2" />
@@ -1075,7 +1079,7 @@ const App = () => {
                 </label>
                 <div className="relative">
                   <input
-                    src="/IMG_20250930_060032_004.webp"
+                    type="file"
                     name="attachment"
                     accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 file:cursor-pointer"
