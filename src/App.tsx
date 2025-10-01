@@ -809,10 +809,12 @@ const App = () => {
                       <div className="text-right mt-2 md:mt-0">
                         <div className="text-gray-400 text-sm">{edu.period}</div>
                         <div className="text-purple-400 font-semibold">
-                          {edu.gpa === 'Ongoing' ? 'In Progress' : `GPA: ${edu.gpa}`}
-                        </div>
-                      </div>
-                    </div>
+                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mx-auto">
+                    <img 
+                      src="/IMG_20250930_060032_004.webp" 
+                      alt="MD Yeomun Hasan (FEEHAB)" 
+                      className="w-full h-full rounded-full object-cover"
+                    />
                   </div>
                 </div>
                 {edu.clubLink && (
