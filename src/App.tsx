@@ -1,56 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail, Code, Database, Globe, Smartphone, Server, Palette, ArrowRight, ExternalLink, Download, Star, Users, Award, Briefcase, GraduationCap, Calendar, MapPin, Phone, Send, CheckCircle, X, Menu, ChevronDown, Zap, Target, Lightbulb, Heart, Coffee, Gamepad as GamepadIcon, Trophy, Gamepad2 } from 'lucide-react';
 import WorkHub from './WorkHub';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Code, 
-  Database, 
-  Server, 
-  Smartphone,
-  Globe,
-  User,
-  Briefcase,
-  GraduationCap,
-  Award,
-  ExternalLink,
-  Menu,
-  X,
-  ChevronDown,
-  Star,
-  Calendar,
-  Users,
-  Zap,
-  CheckCircle
-} from 'lucide-react';
 
-const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<'portfolio' | 'workhub'>('portfolio');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showWorkHub, setShowWorkHub] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hoveredGame, setHoveredGame] = useState<string | null>(null);
-  const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Letter animation for FEEHAB
+  const letters = ['F', 'E', 'E', 'H', 'A', 'B'];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500); // 2.5 seconds loading
-
     const handleScroll = () => {
-      const sections = ['home', 'about', 'gaming', 'skills', 'experience', 'education', 'projects', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -60,10 +35,7 @@ const App = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -74,639 +46,262 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
-  const gameProfiles = {
-    valorant: {
-      name: 'Valorant',
-      uid: 'whiff FEEHAB #RUSHR',
-      rank: 'Diamond 2',
-      level: 156,
-      mainAgent: 'Jett',
-      kd: '1.8',
-      winRate: '68%',
-      logo: '/th copy.jpg'
-    },
-    cs2: {
-      name: 'Counter-Strike 2',
-      uid: 'FEEHAB_YH',
-      rank: 'Legendary Eagle',
-      level: 89,
-      mainWeapon: 'AK-47',
-      kd: '1.6',
-      winRate: '72%',
-      logo: '/files_5259412-1752659540062-download.webp'
-    },
-    freefire: {
-      name: 'Free Fire',
-      uid: '1521343189',
-      rank: 'Heroic 3STAR',
-      level: 67,
-      mainCharacter: 'ALOK',
-      kd: '2.1',
-      winRate: '75%',
-      logo: '/files_5259412-1752659513690-th.jpg'
-    },
-    roblox: {
-      name: 'Roblox',
-      uid: 'FEEHAB_YH',
-      level: 'Player Level 45',
-      joinDate: '2019',
-      favoriteGames: 'Dead Rails, Buckshot Mayhem',
-      playtime: '500+ Hours',
-      achievements: '150+ Badges',
-      logo: '/files_5259412-1752659563015-download.webp'
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch('https://getform.io/f/adrgmrwa', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        setFormSubmitted(true);
-        form.reset();
-        // Reset success message after 5 seconds
-        setTimeout(() => setFormSubmitted(false), 5000);
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      // You could add error state handling here if needed
-    } finally {
+    
+    // Simulate form submission
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 3000);
+    }, 1000);
   };
-  const skills = [
-    { name: 'React', level: 95, icon: <Code className="w-6 h-6" /> },
-    { name: 'Node.js', level: 90, icon: <Server className="w-6 h-6" /> },
-    { name: 'TypeScript', level: 88, icon: <Code className="w-6 h-6" /> },
-    { name: 'MongoDB', level: 85, icon: <Database className="w-6 h-6" /> },
-    { name: 'React Native', level: 82, icon: <Smartphone className="w-6 h-6" /> },
-    { name: 'Next.js', level: 90, icon: <Globe className="w-6 h-6" /> },
-  ];
 
-  const experiences = [
-    {
-      title: 'Senior Full Stack Developer',
-      company: 'TechCorp Solutions',
-      period: '2022 - Present',
-      description: 'Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and architecting system solutions.',
-      achievements: [
-        'Increased application performance by 40%',
-        'Led a team of 5 developers',
-        'Implemented CI/CD pipelines'
-      ]
-    },
-    {
-      title: 'Full Stack Developer',
-      company: 'Digital Innovations',
-      period: '2020 - 2022',
-      description: 'Developed and maintained multiple client projects using modern web technologies. Collaborated with design teams to create responsive user interfaces.',
-      achievements: [
-        'Delivered 15+ successful projects',
-        'Reduced bug reports by 60%',
-        'Improved code review process'
-      ]
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'StartupXYZ',
-      period: '2019 - 2020',
-      description: 'Built responsive web applications and mobile apps. Worked closely with UX/UI designers to implement pixel-perfect designs.',
-      achievements: [
-        'Launched 3 mobile applications',
-        'Achieved 98% user satisfaction',
-        'Optimized loading times by 50%'
-      ]
-    }
-  ];
-
-  const education = [
-    {
-      degree: 'Higher Secondary Certificate (HSC)',
-      institution: 'Govt. Azizul Haque College, Bogura',
-      period: '2024 - 2026',
-      gpa: 'Ongoing',
-      department: 'Business Studies',
-      description: 'Currently pursuing HSC in Business Studies Group. Expected graduation in 2026.',
-      logo: '/OIP%20(1).jpeg'
-    },
-    {
-      degree: 'Secondary School Certificate (SSC)',
-      institution: 'Ramdeo Bazla Govt. High School (Joypurhat Zilla School)',
-      period: 'Completed 2024',
-      gpa: '5.00/5.00',
-      department: 'Science',
-      description: 'Completed SSC in Science Group with perfect GPA. Active member of Ramdeo Bazla "Scintessa" Science Club, participating in various scientific activities and competitions.',
-      logo: '/OIP%20copy.jpeg',
-      clubLink: 'https://www.facebook.com/scintessa',
-      clubName: 'Ramdeo Bazla "Scintessa" Science Club'
-    }
-  ];
-
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: 'https://github.com/feehab/ecommerce',
-      live: 'https://ecommerce-demo.feehab.com',
-      featured: true
-    },
-    {
-      title: 'Task Management App',
-      description: 'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Socket.io', 'Express', 'PostgreSQL'],
-      github: 'https://github.com/feehab/taskmanager',
-      live: 'https://tasks.feehab.com',
-      featured: true
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'Beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'OpenWeather API', 'Chart.js'],
-      github: 'https://github.com/feehab/weather',
-      live: 'https://weather.feehab.com',
-      featured: false
-    },
-    {
-      title: 'Social Media Analytics',
-      description: 'Analytics dashboard for social media metrics with data visualization and automated reporting features.',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Vue.js', 'D3.js', 'Python', 'FastAPI'],
-      github: 'https://github.com/feehab/analytics',
-      live: 'https://analytics.feehab.com',
-      featured: false
-    }
-  ];
-
-  if (showWorkHub) {
-    return <WorkHub onBack={() => setShowWorkHub(false)} />;
+  if (currentView === 'workhub') {
+    return <WorkHub onBack={() => setCurrentView('portfolio')} />;
   }
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 z-50 overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 animate-gradient-shift"></div>
-        
-        {/* Animated particle field */}
-        <div className="absolute inset-0">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white opacity-20 rounded-full animate-float-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            ></div>
-          ))}
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-x-hidden">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-700/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/FEEHAB copy copy.png" 
+                alt="FEEHAB Logo" 
+                className="h-10 w-auto"
+              />
+              <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                FEEHAB
+              </div>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                {['home', 'about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+                  <button
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                      activeSection === section
+                        ? 'text-blue-400 bg-blue-400/10'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
+                    }`}
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-300 hover:text-white p-2"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
         </div>
-        
-        {/* Noise overlay */}
-        <div className="absolute inset-0 opacity-10 bg-noise animate-pulse-slow"></div>
-        
-        {/* Main content */}
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            {/* FEEHAB letters with sequential animation */}
-            <div className="flex justify-center items-center space-x-1 mb-8">
-              {['F', 'E', 'E', 'H', 'A', 'B'].map((letter, index) => (
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {['home', 'about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 ${
+                    activeSection === section
+                      ? 'text-blue-400 bg-blue-400/10'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
+                  }`}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-bounce-slow"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl animate-gradient-shift"></div>
+        </div>
+
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          {/* Animated FEEHAB Letters */}
+          <div className="mb-8">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              {letters.map((letter, index) => (
                 <span
                   key={index}
-                  className="text-6xl md:text-8xl font-black text-white animate-letter-appear neon-glow"
-                  style={{
-                    fontFamily: 'Inter, Orbitron, sans-serif',
-                    animationDelay: `${index * 0.1}s`,
-                    animationFillMode: 'both'
-                  }}
+                  className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-letter-appear neon-glow"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {letter}
                 </span>
               ))}
             </div>
-            
-            {/* Progress line */}
-            <div className="w-64 h-0.5 bg-gray-700 mx-auto rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-blue-400 to-purple-500 animate-progress-sweep rounded-full"></div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-300 animate-fade-in-delayed">
+              MD Yeomun Hasan
             </div>
-            
-            {/* Loading text */}
-            <p className="text-gray-400 text-sm mt-4 animate-fade-in-delayed">
-              Loading Experience...
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                FEEHAB
-              </span>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              <button
-                onClick={() => scrollToSection('home')}
-                className={`capitalize transition-colors duration-200 hover:text-blue-400 ${
-                  activeSection === 'home' ? 'text-blue-400' : 'text-gray-300'
-                }`}
-              >
-                home
-              </button>
-              
-              {/* About with dropdown */}
-              <div 
-                className="relative"
-              >
-                <button
-                  onClick={() => scrollToSection('about')}
-                  onMouseEnter={() => setShowAboutDropdown(true)}
-                  className={`capitalize transition-colors duration-200 hover:text-blue-400 flex items-center ${
-                    activeSection === 'about' ? 'text-blue-400' : 'text-gray-300'
-                  }`}
-                >
-                  about
-                  <ChevronDown className="w-4 h-4 ml-1" />
-                </button>
-                
-                {showAboutDropdown && (
-                  <div 
-                    className="absolute top-full left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50"
-                    onMouseEnter={() => setShowAboutDropdown(true)}
-                    onMouseLeave={() => setShowAboutDropdown(false)}
-                  >
-                    <button
-                      onClick={() => scrollToSection('about')}
-                      className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-t-lg transition-colors duration-200"
-                    >
-                      About Me
-                    </button>
-                    <button
-                      onClick={() => setShowWorkHub(true)}
-                      className="block w-full text-left px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-lg transition-colors duration-200"
-                    >
-                      WorkHub
-                    </button>
-                  </div>
-                )}
-              </div>
-              
-              {['gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-colors duration-200 hover:text-blue-400 ${
-                    activeSection === item ? 'text-blue-400' : 'text-gray-300'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-800">
-              <button
-                onClick={() => scrollToSection('home')}
-                className={`block w-full text-left py-2 capitalize transition-colors duration-200 hover:text-blue-400 ${
-                  activeSection === 'home' ? 'text-blue-400' : 'text-gray-300'
-                }`}
-              >
-                home
-              </button>
-              
-              {/* About section with submenu */}
-              <div>
-                <button
-                  onClick={() => scrollToSection('about')}
-                  className={`block w-full text-left py-2 capitalize transition-colors duration-200 hover:text-blue-400 ${
-                    activeSection === 'about' ? 'text-blue-400' : 'text-gray-300'
-                  }`}
-                >
-                  about
-                </button>
-                <div className="pl-4 space-y-1">
-                  <button
-                    onClick={() => scrollToSection('about')}
-                    className="block w-full text-left py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                  >
-                    About Me
-                  </button>
-                  <button
-                    onClick={() => setShowWorkHub(true)}
-                    className="block w-full text-left py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                  >
-                    WorkHub
-                  </button>
-                </div>
-              </div>
-              
-              {['gaming', 'skills', 'experience', 'education', 'projects', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`block w-full text-left py-2 capitalize transition-colors duration-200 hover:text-blue-400 ${
-                    activeSection === item ? 'text-blue-400' : 'text-gray-300'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
-          <div className="animate-float">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-                MD Yeomun Hasan
-              </span>
-            </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 animate-fade-in-up animation-delay-600">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Full Stack Developer & Creative Technologist
-            </h2>
-            <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Crafting exceptional digital experiences with modern technologies. 
-              Passionate about creating scalable solutions and competitive gaming.
-            </p>
-          </div>
+            </span>
+          </h2>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-800">
+            Crafting exceptional digital experiences with modern technologies. Passionate about creating scalable solutions and competitive gaming.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 animate-fade-in-up animation-delay-1000">
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-semibold text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               View My Work
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-8 py-4 border-2 border-gray-600 rounded-full font-semibold hover:border-blue-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 border-2 border-gray-600 rounded-full font-semibold text-lg hover:border-blue-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-105"
             >
               Get In Touch
             </button>
           </div>
 
-          <div className="flex justify-center space-x-6 mt-12">
-            <a href="https://github.com/feehab" className="text-gray-400 hover:text-white transition-colors duration-200 transform hover:scale-110">
+          {/* Social Links */}
+          <div className="flex justify-center space-x-6 animate-fade-in-up animation-delay-2000">
+            <a 
+              href="https://github.com/feehab" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-3 bg-gray-800/50 rounded-full hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 transform hover:scale-110"
+            >
               <Github className="w-6 h-6" />
             </a>
-            <a href="https://linkedin.com/in/feehab" className="text-gray-400 hover:text-white transition-colors duration-200 transform hover:scale-110">
+            <a 
+              href="https://linkedin.com/in/feehab" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-3 bg-gray-800/50 rounded-full hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 transform hover:scale-110"
+            >
               <Linkedin className="w-6 h-6" />
             </a>
-            <a href="mailto:contact@feehab.com" className="text-gray-400 hover:text-white transition-colors duration-200 transform hover:scale-110">
+            <a 
+              href="mailto:contact@feehab.dev" 
+              className="p-3 bg-gray-800/50 rounded-full hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 transform hover:scale-110"
+            >
               <Mail className="w-6 h-6" />
             </a>
           </div>
         </div>
 
+        {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-gray-400" />
+          <ChevronDown className="w-8 h-8 text-gray-400" />
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-800/50">
+      <section id="about" className="py-20 bg-gray-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">About Me</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                About Me
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">Get to know the person behind the code</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-blue-400">Hello! I'm Yeomun</h3>
-              <p className="text-gray-300 leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience creating 
-                digital solutions that bridge the gap between design and technology. I specialize 
-                in building scalable web applications and mobile experiences that users love.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to 
-                open-source projects, or sharing knowledge with the developer community. I'm also 
-                a passionate gamer who enjoys competitive FPS games and open-world adventures. 
-                Gaming enhances my strategic thinking and problem-solving skills, which I apply 
-                to coding challenges. I believe in writing clean, maintainable code and creating 
-                products that make a real impact.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-6 mt-8">
-                <div className="text-center p-4 glass rounded-lg">
-                  <div className="text-3xl font-bold text-blue-400">10+</div>
-                  <div className="text-gray-400">Projects Completed</div>
-                </div>
-                <div className="text-center p-4 glass rounded-lg">
-                  <div className="text-3xl font-bold text-purple-400">5+</div>
-                  <div className="text-gray-400">Years Experience</div>
-                </div>
-              </div>
-            </div>
-
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <div className="w-80 h-80 mx-auto relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse-slow"></div>
-                <div className="absolute inset-2 bg-gray-900 rounded-full flex items-center justify-center">
-                  <User className="w-32 h-32 text-gray-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gaming Section */}
-      <section id="gaming" className="py-20 bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Gaming & Interests</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
-            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-              Gaming is more than just entertainment for me - it's a way to enhance strategic thinking, 
-              teamwork, and quick decision-making skills that I apply in development.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Valorant */}
-            <div 
-              className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              onMouseEnter={() => setHoveredGame('valorant')}
-              onMouseLeave={() => setHoveredGame(null)}
-            >
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
-                  <img 
-                    src={gameProfiles.valorant.logo} 
-                    alt="Valorant" 
-                    className="w-full h-full object-contain"
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-glow"></div>
+                <div className="absolute inset-2 bg-gray-900 rounded-full overflow-hidden">
+                  <img
+                    src="/IMG_20250930_060032_004.png"
+                    alt="MD Yeomun Hasan"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                
-                {hoveredGame === 'valorant' ? (
-                  <div className="space-y-1">
-                    <div className="text-xs text-gray-400">UID: <span className="text-white font-mono">{gameProfiles.valorant.uid}</span></div>
-                    <div className="text-xs text-gray-400">Rank: <span className="text-red-400 font-semibold">{gameProfiles.valorant.rank}</span></div>
-                    <div className="text-xs text-gray-400">Level: <span className="text-white">{gameProfiles.valorant.level}</span></div>
-                    <div className="text-xs text-gray-400">Agent: <span className="text-blue-400">{gameProfiles.valorant.mainAgent}</span></div>
-                    <div className="text-xs text-gray-400">K/D: <span className="text-green-400">{gameProfiles.valorant.kd}</span></div>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-lg font-semibold mb-2 text-red-400">Valorant</h3>
-                    <p className="text-gray-300 text-sm">Tactical FPS</p>
-                  </>
-                )}
               </div>
             </div>
 
-            {/* Counter-Strike 2 */}
-            <div 
-              className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              onMouseEnter={() => setHoveredGame('cs2')}
-              onMouseLeave={() => setHoveredGame(null)}
-            >
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
-                  <img 
-                    src={gameProfiles.cs2.logo} 
-                    alt="Counter-Strike 2" 
-                    className="w-full h-full object-contain"
-                  />
+            <div className="space-y-6">
+              <div className="glass p-6 rounded-xl">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Target className="w-6 h-6 text-blue-400" />
+                  <h3 className="text-xl font-semibold">My Mission</h3>
                 </div>
-                
-                {hoveredGame === 'cs2' ? (
-                  <div className="space-y-1">
-                    <div className="text-xs text-gray-400">Steam: <span className="text-white font-mono">{gameProfiles.cs2.uid}</span></div>
-                    <div className="text-xs text-gray-400">Rank: <span className="text-yellow-400 font-semibold">{gameProfiles.cs2.rank}</span></div>
-                    <div className="text-xs text-gray-400">Level: <span className="text-white">{gameProfiles.cs2.level}</span></div>
-                    <div className="text-xs text-gray-400">Weapon: <span className="text-red-400">{gameProfiles.cs2.mainWeapon}</span></div>
-                    <div className="text-xs text-gray-400">K/D: <span className="text-green-400">{gameProfiles.cs2.kd}</span></div>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-lg font-semibold mb-2 text-blue-400">Counter-Strike 2</h3>
-                    <p className="text-gray-300 text-sm">Competitive FPS</p>
-                  </>
-                )}
+                <p className="text-gray-300 leading-relaxed">
+                  I'm passionate about creating digital solutions that make a real impact. With expertise in modern web technology, 
+                  I focus on building scalable applications that solve real-world problems while maintaining exceptional user experiences.
+                </p>
               </div>
-            </div>
 
-            {/* Free Fire */}
-            <div 
-              className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              onMouseEnter={() => setHoveredGame('freefire')}
-              onMouseLeave={() => setHoveredGame(null)}
-            >
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
-                  <img 
-                    src={gameProfiles.freefire.logo} 
-                    alt="Free Fire" 
-                    className="w-full h-full object-contain"
-                  />
+              <div className="glass p-6 rounded-xl">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Lightbulb className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-xl font-semibold">What Drives Me</h3>
                 </div>
-                
-                {hoveredGame === 'freefire' ? (
-                  <div className="space-y-1">
-                    <div className="text-xs text-gray-400">ID: <span className="text-white font-mono">{gameProfiles.freefire.uid}</span></div>
-                    <div className="text-xs text-gray-400">Rank: <span className="text-orange-400 font-semibold">{gameProfiles.freefire.rank}</span></div>
-                    <div className="text-xs text-gray-400">Level: <span className="text-white">{gameProfiles.freefire.level}</span></div>
-                    <div className="text-xs text-gray-400">Character: <span className="text-blue-400">{gameProfiles.freefire.mainCharacter}</span></div>
-                    <div className="text-xs text-gray-400">K/D: <span className="text-green-400">{gameProfiles.freefire.kd}</span></div>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-lg font-semibold mb-2 text-orange-400">Free Fire</h3>
-                    <p className="text-gray-300 text-sm">Battle Royale</p>
-                  </>
-                )}
+                <p className="text-gray-300 leading-relaxed">
+                  Technology is constantly evolving, and I love staying at the forefront of innovation. Whether it's exploring new frameworks, 
+                  optimizing performance, or diving into competitive gaming strategies, I'm always learning and growing.
+                </p>
               </div>
-            </div>
 
-            {/* Roblox */}
-            <div 
-              className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              onMouseEnter={() => setHoveredGame('roblox')}
-              onMouseLeave={() => setHoveredGame(null)}
-            >
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden">
-                  <img 
-                    src={gameProfiles.roblox.logo} 
-                    alt="Roblox" 
-                    className="w-full h-full object-contain"
-                  />
+              <div className="glass p-6 rounded-xl">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Heart className="w-6 h-6 text-pink-400" />
+                  <h3 className="text-xl font-semibold">Beyond Code</h3>
                 </div>
-                
-                {hoveredGame === 'roblox' ? (
-                  <div className="space-y-1">
-                    <div className="text-xs text-gray-400">User: <span className="text-white font-mono">{gameProfiles.roblox.uid}</span></div>
-                    <div className="text-xs text-gray-400">{gameProfiles.roblox.level}</div>
-                    <div className="text-xs text-gray-400">Since: <span className="text-white">{gameProfiles.roblox.joinDate}</span></div>
-                    <div className="text-xs text-gray-400">Top Games:</div>
-                    <div className="text-xs text-blue-400">{gameProfiles.roblox.favoriteGames}</div>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-lg font-semibold mb-2 text-green-400">Roblox</h3>
-                    <p className="text-gray-300 text-sm">Creative Platform</p>
-                  </>
-                )}
+                <p className="text-gray-300 leading-relaxed">
+                  When I'm not coding, you'll find me strategizing in competitive games, exploring new technologies, 
+                  or contributing to open-source projects. I believe in continuous learning and sharing knowledge with the community.
+                </p>
               </div>
-            </div>
-          </div>
 
-          {/* Open World Games Section */}
-          <div className="mt-12">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-purple-400">Open World Games</h3>
-            <div className="flex justify-center">
-              <div className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                    <Globe className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-purple-400">Open World Games</h4>
-                    <p className="text-gray-300 text-sm">GTA V, Minecraft, Assassin's Creed series</p>
-                  </div>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center space-x-2 bg-blue-500/10 px-4 py-2 rounded-full">
+                  <MapPin className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm">Bangladesh</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-green-500/10 px-4 py-2 rounded-full">
+                  <Coffee className="w-4 h-4 text-green-400" />
+                  <span className="text-sm">Coffee Enthusiast</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-500/10 px-4 py-2 rounded-full">
+                  <GamepadIcon className="w-4 h-4 text-purple-400" />
+                  <span className="text-sm">Competitive Gamer</span>
                 </div>
               </div>
             </div>
@@ -715,29 +310,205 @@ const App = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-800/50">
+      <section id="skills" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Skills & Expertise</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Skills & Expertise
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">Technologies I work with</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skill, index) => (
+            {[
+              {
+                icon: <Code className="w-8 h-8" />,
+                title: "Frontend Development",
+                skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js"],
+                color: "from-blue-500 to-cyan-500"
+              },
+              {
+                icon: <Server className="w-8 h-8" />,
+                title: "Backend Development",
+                skills: ["Node.js", "Express", "Python", "Django", "FastAPI"],
+                color: "from-green-500 to-emerald-500"
+              },
+              {
+                icon: <Database className="w-8 h-8" />,
+                title: "Database & Cloud",
+                skills: ["PostgreSQL", "MongoDB", "Redis", "AWS", "Docker"],
+                color: "from-purple-500 to-pink-500"
+              },
+              {
+                icon: <Smartphone className="w-8 h-8" />,
+                title: "Mobile Development",
+                skills: ["React Native", "Flutter", "iOS", "Android", "PWA"],
+                color: "from-orange-500 to-red-500"
+              },
+              {
+                icon: <Palette className="w-8 h-8" />,
+                title: "UI/UX Design",
+                skills: ["Figma", "Adobe XD", "Sketch", "Prototyping", "User Research"],
+                color: "from-pink-500 to-rose-500"
+              },
+              {
+                icon: <Globe className="w-8 h-8" />,
+                title: "DevOps & Tools",
+                skills: ["Git", "CI/CD", "Linux", "Nginx", "Monitoring"],
+                color: "from-indigo-500 to-blue-500"
+              }
+            ].map((category, index) => (
               <div key={index} className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                <div className="flex items-center mb-4">
-                  <div className="text-blue-400 mr-3">{skill.icon}</div>
-                  <h3 className="text-xl font-semibold">{skill.name}</h3>
+                <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${category.color} mb-4`}>
+                  {category.icon}
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-3 mb-2">
-                  <div 
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-1000 ease-out"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
+                <h3 className="text-xl font-semibold mb-3">{category.title}</h3>
+                <div className="space-y-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="flex items-center justify-between">
+                      <span className="text-gray-300">{skill}</span>
+                      <div className="w-24 bg-gray-700 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full bg-gradient-to-r ${category.color} animate-progress-sweep`}
+                          style={{ animationDelay: `${index * 0.2 + skillIndex * 0.1}s` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="text-right text-sm text-gray-400">{skill.level}%</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-gray-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Featured Projects
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">Some of my recent work</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "E-Commerce Platform",
+                description: "Full-stack e-commerce solution with React, Node.js, and PostgreSQL",
+                image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
+                github: "#",
+                live: "#",
+                featured: true
+              },
+              {
+                title: "Task Management App",
+                description: "Collaborative project management tool with real-time updates",
+                image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["Vue.js", "Express", "Socket.io", "MongoDB"],
+                github: "#",
+                live: "#",
+                featured: false
+              },
+              {
+                title: "AI Chat Application",
+                description: "Real-time chat app with AI integration and smart responses",
+                image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["React", "Python", "OpenAI", "WebSocket"],
+                github: "#",
+                live: "#",
+                featured: true
+              },
+              {
+                title: "Portfolio Website",
+                description: "Responsive portfolio site with modern animations",
+                image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["Next.js", "Tailwind", "Framer Motion"],
+                github: "#",
+                live: "#",
+                featured: false
+              },
+              {
+                title: "Weather Dashboard",
+                description: "Beautiful weather app with location-based forecasts",
+                image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["React", "Weather API", "Chart.js"],
+                github: "#",
+                live: "#",
+                featured: false
+              },
+              {
+                title: "Crypto Tracker",
+                description: "Real-time cryptocurrency price tracking and portfolio management",
+                image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+                tech: ["React", "CoinGecko API", "Redux"],
+                github: "#",
+                live: "#",
+                featured: true
+              }
+            ].map((project, index) => (
+              <div key={index} className="glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 transform hover:scale-105 group">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  {project.featured && (
+                    <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <Star className="w-4 h-4 inline mr-1" />
+                      Featured
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 text-blue-400">{project.title}</h3>
+                  <p className="text-gray-300 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex space-x-4">
+                    <a 
+                      href={project.github}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                    >
+                      <Github className="w-4 h-4" />
+                      <span>Code</span>
+                    </a>
+                    <a 
+                      href={project.live}
+                      className="flex items-center space-x-2 text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <a 
+              href="/projects-showcase.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <span>View All Projects</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </section>
@@ -746,393 +517,437 @@ const App = () => {
       <section id="experience" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Experience & Achievements
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">My professional journey and accomplishments</p>
           </div>
 
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <div key={index} className="glass p-8 rounded-xl hover:bg-white/10 transition-all duration-300">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold text-blue-400">{exp.title}</h3>
-                    <h4 className="text-xl text-gray-300">{exp.company}</h4>
-                  </div>
-                  <div className="flex items-center text-gray-400 mt-2 md:mt-0">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {exp.period}
-                  </div>
-                </div>
-                <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
-                <div className="space-y-2">
-                  <h5 className="font-semibold text-purple-400">Key Achievements:</h5>
-                  <ul className="list-disc list-inside space-y-1 text-gray-300">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section id="education" className="py-20 bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Education Journey</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
-            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-              Currently building my academic foundation while pursuing my passion for technology and development.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-8">
-            {education.map((edu, index) => (
-              <div key={index} className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300">
-                <div className="flex items-center mb-4">
-                  <div className="mr-6 flex-shrink-0">
-                    <img 
-                      src={edu.logo} 
-                      alt={`${edu.institution} logo`}
-                     className="w-16 h-16 object-cover rounded-full bg-white p-2 border-2 border-gray-600"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Professional Experience */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-8 flex items-center">
+                <Briefcase className="w-6 h-6 mr-3 text-blue-400" />
+                Professional Experience
+              </h3>
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Senior Full Stack Developer",
+                    company: "TechCorp Solutions",
+                    period: "2023 - Present",
+                    description: "Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and architecting system solutions.",
+                    achievements: ["Increased app performance by 40%", "Led team of 5 developers", "Implemented CI/CD pipeline"]
+                  },
+                  {
+                    title: "Full Stack Developer",
+                    company: "Digital Innovations Ltd",
+                    period: "2022 - 2023",
+                    description: "Developed and maintained multiple client projects using modern web technologies. Collaborated with design teams to create exceptional user experiences.",
+                    achievements: ["Delivered 15+ projects on time", "Improved code quality by 60%", "Client satisfaction rate: 98%"]
+                  },
+                  {
+                    title: "Frontend Developer",
+                    company: "StartupHub",
+                    period: "2021 - 2022",
+                    description: "Built responsive web applications and mobile apps. Focused on performance optimization and user experience improvements.",
+                    achievements: ["Reduced load time by 50%", "Built 10+ responsive websites", "Implemented modern UI/UX practices"]
+                  }
+                ].map((job, index) => (
+                  <div key={index} className="glass p-6 rounded-xl">
+                    <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-blue-400">{edu.degree}</h3>
-                        <h4 className="text-gray-300">{edu.institution}</h4>
+                        <h4 className="text-lg font-semibold text-blue-400">{job.title}</h4>
+                        <p className="text-gray-300">{job.company}</p>
                       </div>
-                      <div className="text-right mt-2 md:mt-0">
-                        <div className="text-gray-400 text-sm">{edu.period}</div>
-                        <div className="text-purple-400 font-semibold">
-                          GPA: {edu.gpa}
-                        </div>
+                      <div className="flex items-center space-x-2 text-sm text-gray-400">
+                        <Calendar className="w-4 h-4" />
+                        <span>{job.period}</span>
                       </div>
                     </div>
-                    <div className="mt-2">
-                      <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
-                        {edu.department}
-                      </span>
+                    <p className="text-gray-300 mb-4">{job.description}</p>
+                    <div className="space-y-2">
+                      {job.achievements.map((achievement, achIndex) => (
+                        <div key={achIndex} className="flex items-center space-x-2">
+                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-300">{achievement}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Education & Certifications */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-8 flex items-center">
+                <GraduationCap className="w-6 h-6 mr-3 text-purple-400" />
+                Education & Gaming
+              </h3>
+              <div className="space-y-6">
+                <div className="glass p-6 rounded-xl">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                      <GraduationCap className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold">Computer Science & Engineering</h4>
+                      <p className="text-gray-300">University of Technology</p>
+                      <p className="text-sm text-gray-400">2019 - 2023</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300">Specialized in software engineering, algorithms, and system design. Graduated with honors.</p>
+                </div>
+
+                <div className="glass p-6 rounded-xl">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                      <Trophy className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold">Competitive Gaming Achievements</h4>
+                      <p className="text-gray-300">VALORANT & Esports</p>
+                      <p className="text-sm text-gray-400">2020 - Present</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">Radiant Rank in VALORANT</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">Regional Tournament Winner</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">Team Captain & Strategic Leader</span>
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
-                {edu.clubLink && (
-                  <div className="mt-3 flex items-center text-green-400 text-sm">
-                    <Users className="w-4 h-4 mr-2" />
-                    <a 
-                      href={edu.clubLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="hover:text-green-300 transition-colors duration-200 flex items-center"
-                    >
-                      {edu.clubName}
-                      <ExternalLink className="w-3 h-3 ml-1" />
-                    </a>
+
+                <div className="glass p-6 rounded-xl">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center">
+                      <Award className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold">Professional Certifications</h4>
+                      <p className="text-gray-300">Various Platforms</p>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
-            
-            <div className="text-center mt-12">
-              <div className="glass p-6 rounded-xl">
-                <h3 className="text-xl font-semibold text-blue-400 mb-2">Future Plans</h3>
-                <p className="text-gray-300">
-                  Planning to pursue studies at IBA (Institute of Business Administration) after completing HSC. 
-                  My goal is to achieve expertise in three key areas: computer knowledge, business knowledge, and gaming. 
-                  This combination will help me build innovative tech businesses and contribute to the gaming industry.
-                </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">AWS Certified Solutions Architect</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">Google Cloud Professional Developer</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-sm text-gray-300">MongoDB Certified Developer</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+          {/* Stats */}
+          <div className="mt-16 grid md:grid-cols-4 gap-8 text-center">
+            <div className="glass p-6 rounded-xl">
+              <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
+              <div className="text-gray-300">Projects Completed</div>
+            </div>
+            <div className="glass p-6 rounded-xl">
+              <div className="text-3xl font-bold text-green-400 mb-2">30+</div>
+              <div className="text-gray-300">Happy Clients</div>
+            </div>
+            <div className="glass p-6 rounded-xl">
+              <div className="text-3xl font-bold text-purple-400 mb-2">3+</div>
+              <div className="text-gray-300">Years Experience</div>
+            </div>
+            <div className="glass p-6 rounded-xl">
+              <div className="text-3xl font-bold text-yellow-400 mb-2">24/7</div>
+              <div className="text-gray-300">Support Available</div>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      Featured
-                    </div>
-                  )}
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-400">{project.title}</h3>
-                  <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex space-x-4">
-                    <a 
-                      href="/projects-showcase"
-                      className="flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200 font-semibold"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      See Projects
-                    </a>
-                  </div>
-                </div>
+          {/* WorkHub CTA */}
+          <div className="mt-16 text-center">
+            <div className="glass p-8 rounded-xl">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <Zap className="w-8 h-8 text-yellow-400" />
+                <h3 className="text-2xl font-semibold">Looking for Work Opportunities?</h3>
               </div>
-            ))}
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                Check out our WorkHub for available freelance projects and tasks. 
+                Perfect for developers, designers, and digital professionals looking to earn extra income.
+              </p>
+              <button
+                onClick={() => setCurrentView('workhub')}
+                className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full font-semibold hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105"
+              >
+                <Briefcase className="w-5 h-5" />
+                <span>Explore WorkHub</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-800/50">
+      <section id="contact" className="py-20 bg-gray-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
-            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-              Send me a message and I will reply you under 6 hours. I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!
-            </p>
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Get In Touch
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">Let's discuss your next project</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
             <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6" />
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                  I'm always interested in new opportunities and exciting projects. 
+                  Whether you need a full-stack developer, want to discuss a collaboration, 
+                  or just want to say hello, feel free to reach out!
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Email</h4>
+                    <a href="mailto:contact@feehab.dev" className="text-blue-400 hover:text-blue-300 transition-colors">
+                      contact@feehab.dev
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Email</h3>
-                  <a 
-                    href="mailto:mdyeomunhasan@gmail.com" 
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                  >
-                    mdyeomunhasan@gmail.com
-                  </a>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Phone</h4>
+                    <a href="tel:+8801234567890" className="text-blue-400 hover:text-blue-300 transition-colors">
+                      +880 123 456 7890
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Location</h4>
+                    <p className="text-gray-300">Dhaka, Bangladesh</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Phone</h3>
+              <div className="pt-8">
+                <h4 className="font-semibold mb-4">Follow Me</h4>
+                <div className="flex space-x-4">
                   <a 
-                    href="tel:+8801928975003" 
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                  >
-                    +88 019 289-7503
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Location</h3>
-                  <a 
-                    href="https://www.google.com/maps/search/Gaibandha,+Rangpur,+Bangladesh" 
+                    href="https://github.com/feehab" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                    className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors duration-300"
                   >
-                    Gaibandha, Rangpur, Bangladesh
+                    <Github className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="https://linkedin.com/in/feehab" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors duration-300"
+                  >
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="mailto:contact@feehab.dev"
+                    className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors duration-300"
+                  >
+                    <Mail className="w-6 h-6" />
                   </a>
                 </div>
               </div>
             </div>
 
-            {formSubmitted ? (
-              <div className="glass p-8 rounded-xl text-center">
-                <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-semibold text-green-400 mb-2">Message Sent Successfully!</h3>
-                <p className="text-gray-300">I will reply you so soon. Thank you for reaching out!</p>
-              </div>
-            ) : (
-              <form 
-                onSubmit={handleFormSubmit}
-                className="space-y-6"
-              >
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200"
-                />
-              </div>
-              <div>
-                <select
-                  name="country"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
-                  defaultValue=""
-                  required
-                >
-                  <option value="" disabled className="text-gray-400">Select Your Country</option>
-                  <option value="afghanistan">Afghanistan</option>
-                  <option value="albania">Albania</option>
-                  <option value="algeria">Algeria</option>
-                  <option value="argentina">Argentina</option>
-                  <option value="australia">Australia</option>
-                  <option value="austria">Austria</option>
-                  <option value="bangladesh">Bangladesh</option>
-                  <option value="belgium">Belgium</option>
-                  <option value="brazil">Brazil</option>
-                  <option value="canada">Canada</option>
-                  <option value="china">China</option>
-                  <option value="denmark">Denmark</option>
-                  <option value="egypt">Egypt</option>
-                  <option value="finland">Finland</option>
-                  <option value="france">France</option>
-                  <option value="germany">Germany</option>
-                  <option value="greece">Greece</option>
-                  <option value="india">India</option>
-                  <option value="indonesia">Indonesia</option>
-                  <option value="iran">Iran</option>
-                  <option value="iraq">Iraq</option>
-                  <option value="ireland">Ireland</option>
-                  <option value="italy">Italy</option>
-                  <option value="japan">Japan</option>
-                  <option value="jordan">Jordan</option>
-                  <option value="kenya">Kenya</option>
-                  <option value="malaysia">Malaysia</option>
-                  <option value="mexico">Mexico</option>
-                  <option value="netherlands">Netherlands</option>
-                  <option value="new-zealand">New Zealand</option>
-                  <option value="nigeria">Nigeria</option>
-                  <option value="norway">Norway</option>
-                  <option value="pakistan">Pakistan</option>
-                  <option value="philippines">Philippines</option>
-                  <option value="poland">Poland</option>
-                  <option value="portugal">Portugal</option>
-                  <option value="russia">Russia</option>
-                  <option value="saudi-arabia">Saudi Arabia</option>
-                  <option value="singapore">Singapore</option>
-                  <option value="south-africa">South Africa</option>
-                  <option value="south-korea">South Korea</option>
-                  <option value="spain">Spain</option>
-                  <option value="sri-lanka">Sri Lanka</option>
-                  <option value="sweden">Sweden</option>
-                  <option value="switzerland">Switzerland</option>
-                  <option value="thailand">Thailand</option>
-                  <option value="turkey">Turkey</option>
-                  <option value="uae">United Arab Emirates</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="usa">United States</option>
-                  <option value="vietnam">Vietnam</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <select
-                  name="subject"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 text-white"
-                  defaultValue=""
-                  required
-                >
-                  <option value="" disabled className="text-gray-400">Select Subject</option>
-                  <option value="project-inquiry">Project Inquiry</option>
-                  <option value="job-opportunity">Job Opportunity</option>
-                  <option value="collaboration">Collaboration</option>
-                  <option value="freelance-work">Freelance Work</option>
-                  <option value="consultation">Consultation</option>
-                  <option value="general-inquiry">General Inquiry</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Attachment (Optional)
-                </label>
-                <div className="relative">
+            {/* Contact Form */}
+            <div className="glass p-8 rounded-xl">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    Your Name
+                  </label>
                   <input
-                    type="file"
-                    name="attachment"
-                    accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600 file:cursor-pointer"
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                    placeholder="Enter your name"
                   />
-                  <p className="text-xs text-gray-400 mt-1">
-                    Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG (Max 10MB)
-                  </p>
                 </div>
-              </div>
-              <div>
-                <textarea
-                  rows={5}
-                  name="message"
-                  placeholder="Your Message"
-                  required
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Sending...</span>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 resize-none transition-all duration-300"
+                    placeholder="Tell me about your project..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </button>
+
+                {submitStatus === 'success' && (
+                  <div className="flex items-center space-x-2 text-green-400 bg-green-400/10 p-4 rounded-lg">
+                    <CheckCircle className="w-5 h-5" />
+                    <span>Message sent successfully! I'll get back to you soon.</span>
                   </div>
-                ) : (
-                  'Send Message'
                 )}
-              </button>
               </form>
-            )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-gray-800 border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <img 
-                src="/FEEHAB copy copy.png" 
-                alt="FEEHAB Logo" 
-                className="h-20 w-auto"
-              />
+      <footer className="bg-gray-900 border-t border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="/FEEHAB copy copy.png" 
+                  alt="FEEHAB Logo" 
+                  className="h-10 w-auto"
+                />
+                <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                  FEEHAB
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Full Stack Developer & Creative Technologist passionate about creating exceptional digital experiences 
+                and competitive gaming strategies.
+              </p>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://github.com/feehab" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                >
+                  <Github className="w-6 h-6" />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/feehab" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a 
+                  href="mailto:contact@feehab.dev"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                >
+                  <Mail className="w-6 h-6" />
+                </a>
+              </div>
             </div>
-            <div className="text-gray-400 text-center md:text-right">
-              <p>&copy; 2025 MD Yeomun Hasan. All rights reserved.</p>
-              <p className="text-sm mt-1">Built with React & Tailwind CSS</p>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {['About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <button
+                      onClick={() => scrollToSection(item.toLowerCase())}
+                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                    >
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>Web Development</li>
+                <li>Mobile Apps</li>
+                <li>UI/UX Design</li>
+                <li>Consulting</li>
+                <li>Gaming Strategy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 MD Yeomun Hasan (FEEHAB). All rights reserved.</p>
+            <p className="text-sm mt-1">Built with React, TypeScript, and Tailwind CSS 🚀</p>
           </div>
         </div>
       </footer>
