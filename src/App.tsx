@@ -1,39 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Code, 
-  Database, 
-  Globe, 
-  Smartphone, 
-  Server, 
-  Palette,
-  ArrowRight,
-  ExternalLink,
-  Download,
-  Star,
-  Users,
-  Award,
-  Briefcase,
-  GraduationCap,
-  Calendar,
-  MapPin,
-  Phone,
-  Send,
-  CheckCircle,
-  X,
-  Menu,
-  ChevronDown,
-  Zap,
-  Target,
-  Lightbulb,
-  Heart,
-  Coffee,
-  GamepadIcon,
-  Trophy,
-  Gamepad2
-} from 'lucide-react';
+import { Github, Linkedin, Mail, Code, Database, Globe, Smartphone, Server, Palette, ArrowRight, ExternalLink, Download, Star, Users, Award, Briefcase, GraduationCap, Calendar, MapPin, Phone, Send, CheckCircle, X, Menu, ChevronDown, Zap, Target, Lightbulb, Heart, Coffee, Gamepad as GamepadIcon, Trophy, Gamepad2 } from 'lucide-react';
 import WorkHub from './WorkHub';
 
 const App: React.FC = () => {
