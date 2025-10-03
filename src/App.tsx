@@ -282,22 +282,25 @@ const App = () => {
         
         {/* Main content */}
         <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            {/* FEEHAB letters with sequential animation */}
-            <div className="flex justify-center items-center space-x-1 mb-8">
-              {['F', 'E', 'E', 'H', 'A', 'B'].map((letter, index) => (
-                <span
-                  key={index}
-                  className="text-6xl md:text-8xl font-black text-white animate-letter-appear neon-glow"
-                  style={{
-                    fontFamily: 'Inter, Orbitron, sans-serif',
-                    animationDelay: `${index * 0.1}s`,
-                    animationFillMode: 'both'
-                  }}
-                >
-                  {letter}
-                </span>
-              ))}
+          <div className="text-center mb-16 relative">
+            <div className="mb-8">
+              {/* Animated FEEHAB letters */}
+              <div className="flex justify-center items-center space-x-2 mb-6">
+                {['F', 'E', 'E', 'H', 'A', 'B'].map((letter, index) => (
+                  <span
+                    key={index}
+                    className={`text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-letter-appear neon-glow`}
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </div>
+              
+              {/* Name - Clean and visible */}
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 animate-fade-in-up animation-delay-1000">
+                MD Yeomun Hasan
+              </h2>
             </div>
             
             {/* Progress line */}
