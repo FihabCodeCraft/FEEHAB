@@ -806,7 +806,7 @@ const App = () => {
                         <h3 className="text-lg font-semibold text-blue-400">{edu.degree}</h3>
                         <h4 className="text-gray-300">{edu.institution}</h4>
                       </div>
-                      <div className="text-right">
+                            src="/IMG_20250930_060032_004 copy.png"
                         <div className="text-gray-400 text-sm">{edu.period}</div>
                         <div className="text-purple-400 font-semibold">
                           GPA: {edu.gpa}
@@ -820,23 +820,21 @@ const App = () => {
                     </div>
                   </div>
                 </div>
-                <>
-                  <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
-                  {edu.clubLink && (
-                    <div className="mt-3 flex items-center text-green-400 text-sm">
-                      <Users className="w-4 h-4 mr-2" />
-                      <a 
-                        href={edu.clubLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:text-green-300 transition-colors duration-200 flex items-center"
-                      >
-                        {edu.clubName}
-                        <ExternalLink className="w-3 h-3 ml-1" />
-                      </a>
-                    </div>
-                  )}
-                </>
+                <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
+                {edu.clubLink && (
+                  <div className="mt-3 flex items-center text-green-400 text-sm">
+                    <Users className="w-4 h-4 mr-2" />
+                    <a 
+                      href={edu.clubLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-green-300 transition-colors duration-200 flex items-center"
+                    >
+                      {edu.clubName}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
             
