@@ -806,7 +806,7 @@ const App = () => {
                         <h3 className="text-lg font-semibold text-blue-400">{edu.degree}</h3>
                         <h4 className="text-gray-300">{edu.institution}</h4>
                       </div>
-                      <div className="text-right mt-2 md:mt-0">
+                            src="/IMG_20250930_060032_004 copy.png"
                         <div className="text-gray-400 text-sm">{edu.period}</div>
                         <div className="text-purple-400 font-semibold">
                           GPA: {edu.gpa}
