@@ -541,9 +541,13 @@ const App = () => {
             </div>
 
             <div className="relative">
-              <div className="w-80 h-80 mx-auto relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse-slow"></div>
-                <div className="absolute inset-2 bg-gray-900 rounded-full flex items-center justify-center">
+              <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mx-auto animate-float">
+                <div className="w-full h-full rounded-full overflow-hidden">
+                  <img 
+                    src="/IMG_20250930_060032_004 copy.png" 
+                    alt="MD Yeomun Hasan - FEEHAB"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                   <User className="w-32 h-32 text-gray-600" />
                 </div>
               </div>
