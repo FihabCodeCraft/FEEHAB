@@ -236,28 +236,6 @@ const WorkHub: React.FC<WorkHubProps> = ({ onBack }) => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Advertisement */}
-        <div className="mb-8 flex justify-center">
-          <ins 
-            style={{width: '300px', height: '250px'}} 
-            data-width="300" 
-            data-height="250" 
-            className="p62f15c6fc6" 
-            data-domain="//data159.click" 
-            data-affquery="/96bdedf5f0e507f9653f/62f15c6fc6/?placementName=default22"
-          >
-            <script src="//data159.click/js/responsive.js" async></script>
-          </ins>
-        </div>
-
-        {/* New Advertisement */}
-        <div className="mb-8 flex justify-center">
-          <script 
-            src="https://data156.click/c41a14191521b51cbac6/524927406b/?placementName=default"
-            async
-          ></script>
-        </div>
-
         <div className="space-y-8 lg:space-y-0 lg:flex lg:flex-row lg:gap-8">
           {/* Left Side - Job Listings */}
           <div className="w-full lg:flex-1">
