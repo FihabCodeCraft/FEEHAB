@@ -541,13 +541,9 @@ const App = () => {
             </div>
 
             <div className="relative">
-              <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mx-auto animate-float">
-                <div className="w-full h-full rounded-full overflow-hidden">
-                  <img 
-                    src="/IMG_20250930_060032_004 copy.png" 
-                    alt="MD Yeomun Hasan - FEEHAB"
-                    className="w-full h-full object-cover rounded-full"
-                  />
+              <div className="w-80 h-80 mx-auto relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse-slow"></div>
+                <div className="absolute inset-2 bg-gray-900 rounded-full flex items-center justify-center">
                   <User className="w-32 h-32 text-gray-600" />
                 </div>
               </div>
@@ -810,7 +806,7 @@ const App = () => {
                         <h3 className="text-lg font-semibold text-blue-400">{edu.degree}</h3>
                         <h4 className="text-gray-300">{edu.institution}</h4>
                       </div>
-                      <div className="text-right">
+                      <div className="text-right mt-2 md:mt-0">
                         <div className="text-gray-400 text-sm">{edu.period}</div>
                         <div className="text-purple-400 font-semibold">
                           GPA: {edu.gpa}
@@ -824,23 +820,21 @@ const App = () => {
                     </div>
                   </div>
                 </div>
-                <>
-                  <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
-                  {edu.clubLink && (
-                    <div className="mt-3 flex items-center text-green-400 text-sm">
-                      <Users className="w-4 h-4 mr-2" />
-                      <a 
-                        href={edu.clubLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:text-green-300 transition-colors duration-200 flex items-center"
-                      >
-                        {edu.clubName}
-                        <ExternalLink className="w-3 h-3 ml-1" />
-                      </a>
-                    </div>
-                  )}
-                </>
+                <p className="text-gray-300 text-sm leading-relaxed">{edu.description}</p>
+                {edu.clubLink && (
+                  <div className="mt-3 flex items-center text-green-400 text-sm">
+                    <Users className="w-4 h-4 mr-2" />
+                    <a 
+                      href={edu.clubLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-green-300 transition-colors duration-200 flex items-center"
+                    >
+                      {edu.clubName}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
             
