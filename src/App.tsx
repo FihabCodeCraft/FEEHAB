@@ -77,9 +77,9 @@ const App = () => {
   const gameProfiles = {
     valorant: {
       name: 'Valorant',
-      uid: 'whiff FEEHAB #RUSHR',
+      uid: 'FEEHAB #whiff',
       rank: 'Diamond 2',
-      level: 156,
+      level: 83,
       mainAgent: 'Jett',
       kd: '1.8',
       winRate: '68%',
