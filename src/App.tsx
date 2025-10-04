@@ -93,7 +93,7 @@ const App = () => {
       mainWeapon: 'AK-47',
       kd: '1.6',
       winRate: '72%',
-      logo: '/files_5259412-1752659540062-download.webp'
+      logo: '/valorant-logo-transparent-free-png.png'
     },
     freefire: {
       name: 'Free Fire',
