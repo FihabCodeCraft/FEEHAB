@@ -83,7 +83,7 @@ const App = () => {
       mainAgent: 'Jett',
       kd: '1.8',
       winRate: '68%',
-      logo: '/th copy.jpg'
+      logo: '/valorant-logo-transparent-free-png.png'
     },
     cs2: {
       name: 'Counter-Strike 2',
@@ -93,7 +93,7 @@ const App = () => {
       mainWeapon: 'AK-47',
       kd: '1.6',
       winRate: '72%',
-      logo: '/valorant-logo-transparent-free-png.png'
+      logo: '/files_5259412-1752659540062-download.webp'
     },
     freefire: {
       name: 'Free Fire',
