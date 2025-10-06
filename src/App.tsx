@@ -37,21 +37,6 @@ const App = () => {
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
 
   useEffect(() => {
-    // Smooth scroll optimization
-    const handleWheel = (e: WheelEvent) => {
-      // Smooth wheel scrolling
-      if (Math.abs(e.deltaY) > 100) {
-        e.preventDefault();
-        window.scrollBy({
-          top: e.deltaY > 0 ? window.innerHeight * 0.8 : -window.innerHeight * 0.8,
-          behavior: 'smooth'
-        });
-      }
-    };
-
-    // Add passive wheel listener for better performance
-    window.addEventListener('wheel', handleWheel, { passive: false });
-
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2500); // 2.5 seconds loading
@@ -70,13 +55,12 @@ const App = () => {
             setActiveSection(section);
             break;
           }
-      rootMargin: '-10% 0px -10% 0px',
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timer);
     };
@@ -85,11 +69,7 @@ const App = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
   };
