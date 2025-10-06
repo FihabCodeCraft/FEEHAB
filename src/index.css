@@ -11,6 +11,25 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Enhanced smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Custom smooth scrolling for better performance */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Optimize scrolling performance */
+body, html {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1f2937;
 }
 
 /* Custom scrollbar */
