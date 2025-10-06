@@ -613,9 +613,12 @@ const App = () => {
               <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mx-auto animate-float">
                 <div className="w-full h-full rounded-full overflow-hidden">
                   <img 
+                    id="profile-picture"
                     src="/IMG_20250930_060032_004.webp" 
                     alt="MD Yeomun Hasan - FEEHAB"
-                    className="w-full h-full object-cover rounded-full"
+                    className={`w-full h-full object-cover rounded-full transition-all duration-500 ${
+                      animatedElements.has('profile-picture') ? 'animate-picture-shine' : ''
+                    }`}
                   />
                   <User className="w-32 h-32 text-gray-600" />
                 </div>
