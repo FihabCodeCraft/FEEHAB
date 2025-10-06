@@ -1084,15 +1084,12 @@ const App = () => {
                   Attachment (Optional)
                 </label>
                 <div className="relative">
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <img
+                  <input
                     type="file"
-                      src="/feehabss.png"
-                      alt="MD Yeomun Hasan"
-                      className="w-64 h-64 object-cover shadow-2xl animate-float"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
-                  </div>
+                    name="attachment"
+                    accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                  />
                   <p className="text-xs text-gray-400 mt-2">
                     Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG (Max 10MB)
                   </p>
