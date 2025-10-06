@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WorkHub from './WorkHub';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Github, 
   Linkedin, 
@@ -37,6 +37,14 @@ const App = () => {
     clients: 0
   });
   const [activeSection, setActiveSection] = useState('home');
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
+  const [projectCount, setProjectCount] = useState(0);
+  const [experienceCount, setExperienceCount] = useState(0);
+  const [clientCount, setClientCount] = useState(0);
+  
+  const heroRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
+  const gamingRef = useRef<HTMLElement>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
@@ -889,6 +897,18 @@ const App = () => {
                     <div className="mt-2">
                       <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
                         {edu.department}
+                      <span className={`text-red-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Immortal 2
+                      <span className={`text-yellow-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Conqueror
+                      <span className={`text-purple-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Grandmaster
                       </span>
                     </div>
                   </div>
