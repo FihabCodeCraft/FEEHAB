@@ -30,11 +30,80 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showWorkHub, setShowWorkHub] = useState(false);
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+  const [counters, setCounters] = useState({
+    projects: 0,
+    experience: 0,
+    clients: 0
+  });
   const [activeSection, setActiveSection] = useState('home');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+
+  useEffect(() => {
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const elementId = entry.target.id;
+          
+          // Add to animated elements set
+          setAnimatedElements(prev => new Set([...prev, elementId]));
+          
+          // Trigger number counting animation
+          if (elementId === 'stats-section') {
+            animateCounters();
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    const elementsToObserve = [
+      'profile-picture',
+      'stats-section',
+      'gaming-section'
+    ];
+
+    elementsToObserve.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const animateCounters = () => {
+    const targets = { projects: 15, experience: 2, clients: 12 };
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    Object.keys(targets).forEach(key => {
+      let current = 0;
+      const target = targets[key as keyof typeof targets];
+      const increment = target / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        setCounters(prev => ({
+          ...prev,
+          [key]: Math.floor(current)
+        }));
+      }, stepDuration);
+    });
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
