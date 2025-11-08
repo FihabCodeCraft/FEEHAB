@@ -31,6 +31,30 @@ body {
   background: #6b7280;
 }
 
+/* Custom Circular Cursor */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(59, 130, 246, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease;
+  backdrop-filter: blur(2px);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.custom-cursor.hover {
+  transform: scale(1.5);
+  border-color: rgba(147, 51, 234, 0.8);
+  background: rgba(147, 51, 234, 0.2);
+}
+
 /* Smooth animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -215,6 +239,32 @@ body {
 .animate-fade-in-delayed {
   animation: fade-in-delayed 1s ease-out 1.5s forwards;
   opacity: 0;
+}
+
+/* Blinking text animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.animate-blink {
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* Loading screen animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
 }
 
 /* Shine effect animations */
