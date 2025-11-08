@@ -886,14 +886,6 @@ const App = () => {
                   <h3 className="text-xl font-semibold mb-3 text-blue-400">{project.title}</h3>
                   <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
                   <div className="flex space-x-4">
                     <a 
                       href="/projects-showcase"

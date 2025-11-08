@@ -55,6 +55,73 @@ body {
   background: rgba(147, 51, 234, 0.2);
 }
 
+/* Loading Screen Animations */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blinking text animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.animate-blink {
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* Picture shine effect */
+@keyframes picture-shine {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(147, 51, 234, 0.8), 0 0 60px rgba(59, 130, 246, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.animate-picture-shine {
+  animation: picture-shine 3s ease-in-out infinite;
+}
+
+/* Number glow animation */
+@keyframes number-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px currentColor;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    transform: scale(1.1);
+  }
+}
+
+.animate-number-glow {
+  animation: number-glow 2s ease-in-out infinite;
+}
+
+/* Gaming rank shine */
+@keyframes rank-shine {
+  0%, 100% {
+    text-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
+  }
+}
+
+.animate-rank-shine {
+  animation: rank-shine 2.5s ease-in-out infinite;
+}
 /* Smooth animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
