@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WorkHub from './WorkHub';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Github, 
   Linkedin, 
@@ -30,11 +30,88 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showWorkHub, setShowWorkHub] = useState(false);
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+  const [counters, setCounters] = useState({
+    projects: 0,
+    experience: 0,
+    clients: 0
+  });
   const [activeSection, setActiveSection] = useState('home');
+  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set());
+  const [projectCount, setProjectCount] = useState(0);
+  const [experienceCount, setExperienceCount] = useState(0);
+  const [clientCount, setClientCount] = useState(0);
+  
+  const heroRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
+  const gamingRef = useRef<HTMLElement>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredGame, setHoveredGame] = useState<string | null>(null);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+
+  useEffect(() => {
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const elementId = entry.target.id;
+          
+          // Add to animated elements set
+          setAnimatedElements(prev => new Set([...prev, elementId]));
+          
+          // Trigger number counting animation
+          if (elementId === 'stats-section') {
+            animateCounters();
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    const elementsToObserve = [
+      'profile-picture',
+      'stats-section',
+      'gaming-section'
+    ];
+
+    elementsToObserve.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const animateCounters = () => {
+    const targets = { projects: 15, experience: 2, clients: 12 };
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    Object.keys(targets).forEach(key => {
+      let current = 0;
+      const target = targets[key as keyof typeof targets];
+      const increment = target / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        setCounters(prev => ({
+          ...prev,
+          [key]: Math.floor(current)
+        }));
+      }, stepDuration);
+    });
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -568,7 +645,7 @@ const App = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div id="gaming-section" className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Valorant */}
             <div 
               className="glass p-6 rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
@@ -820,6 +897,18 @@ const App = () => {
                     <div className="mt-2">
                       <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">
                         {edu.department}
+                      <span className={`text-red-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Immortal 2
+                      <span className={`text-yellow-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Conqueror
+                      <span className={`text-purple-400 font-bold transition-all duration-1000 ${
+                        visibleElements.has('gaming') ? 'animate-rank-shine neon-glow' : ''
+                      }`}>
+                        Grandmaster
                       </span>
                     </div>
                   </div>
@@ -885,6 +974,14 @@ const App = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-blue-400">{project.title}</h3>
                   <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                   
                   <div className="flex space-x-4">
                     <a 
@@ -1076,12 +1173,15 @@ const App = () => {
                   Attachment (Optional)
                 </label>
                 <div className="relative">
-                  <input
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
                     type="file"
-                    name="attachment"
-                    accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  />
+                      src="/feehabss.png"
+                      alt="MD Yeomun Hasan"
+                      className="w-64 h-64 object-cover shadow-2xl animate-float"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine"></div>
+                  </div>
                   <p className="text-xs text-gray-400 mt-2">
                     Supported formats: PDF, DOC, DOCX, TXT, JPG, PNG (Max 10MB)
                   </p>
